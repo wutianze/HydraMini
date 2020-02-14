@@ -1,0 +1,55 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+%\usepackage[left=1.0cm,right=1.0cm]{geometry}
+\usepackage{blindtext}
+\usepackage{subfigure}
+\usepackage{diagbox}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+\graphicspath{{figures/}}
+
+\begin{document}
+
+\title{HydraMini: An FPGA-based Affordable Research and Education Platform for Autonomous Driving}
+
+\author{\IEEEauthorblockN{Tianze Wu\IEEEauthorrefmark{1}\IEEEauthorrefmark{4}, Yifan Wang\IEEEauthorrefmark{1}\IEEEauthorrefmark{4}, Weisong Shi\IEEEauthorrefmark{2}, Joshua Lu\IEEEauthorrefmark{3}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}SKL of Computer Architecture, Institute of Computing Technology, CAS, Beijing, China}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Department of Computer Science, Wayne State University, Michigan, USA}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}Xilinx, Shanghai, China}
+\IEEEauthorblockA{\IEEEauthorrefmark{4}University of Chinese Academy of Sciences, Beijing, China}
+{\{wutianze, wangyifan2014\}}@ict.ac.cn, weisong@wayne.edu, joshual@xilinx.com}
+
+\maketitle
+
+\begin{abstract}
+Autonomous driving is a hot topic currently, many companies and research institutions have put a lot of effort into the topic. However, it's difficult for normal researchers or students to afford a car that is used to help them understand and do research in the area. And we believe that only when more people have the chance to make contributions then this area would be more prosperous. So in this paper, we present HydraMini, an affordable experimental research and education platform for autonomous driving. 
+
+HydraMini is based on Xilinx PYNQ-Z2 and uses the power of the Deep Learning Processing Unit (DPU) in FPGA to accelerate the inference process. It's a full-stack platform that almost anyone is able to find their research interests and its high flexibility makes it easy to be extended or modified. It also provides useful tools like a simulator for training and testing in a virtual environment to facilitate the use of HydraMini. Our platform will help researchers and students who want to try autonomous driving or hardware accelerating build their own solutions and test it efficiently. We hope HydraMini meets three requirements: affordable, easy to understand and easy to use.
+\end{abstract}
+
+%\begin{IEEEkeywords}
+%Autonomous Driving, Machine Learning, PYNQ-Z2, Field programmable gate arrays, Deep Learning Processing Unit
+%\end{IEEEkeywords}
+
+\input{data/1_introduction}
+\input{data/2_related_work}
+\input{data/3_design}
+\input{data/4_characteristic}
+\input{data/5_case_study}
+\input{data/6_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+
+\vspace{12pt}
+\end{document}

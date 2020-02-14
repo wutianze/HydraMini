@@ -1,0 +1,462 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Run the Car · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="collect_guide.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    [Pynq Part]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="collect_guide.html">
+            
+                <a href="collect_guide.html">
+            
+                    
+                    Collect Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="run_guide.html">
+            
+                <a href="run_guide.html">
+            
+                    
+                    Run the Car
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    [Host Part]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../host-guide/dnndk_usage.html">
+            
+                <a href="../host-guide/dnndk_usage.html">
+            
+                    
+                    DNNDK Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../host-guide/train_compile.html">
+            
+                <a href="../host-guide/train_compile.html">
+            
+                    
+                    Train & Compile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../virtual-guide/">
+            
+                <a href="../virtual-guide/">
+            
+                    
+                    Virtual Part
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../virtual-guide/custom_simulator.html">
+            
+                <a href="../virtual-guide/custom_simulator.html">
+            
+                    
+                    Custom Simulator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Run the Car</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: Sauron Wu
+ * @GitHub: wutianze
+ * @Email: 1369130123qq@gmail.com
+ * @Date: 2019-10-15 09:17:19
+ * @LastEditors: Sauron Wu
+ * @LastEditTime: 2019-10-15 11:01:30
+ * @Description: 
+ -->
+<h1 id="what-you-will-learn">What you will learn:</h1>
+<ul>
+<li>How to use DPU to accelerate inference process.</li>
+<li>How to make changes to run part code according to your own model.</li>
+<li>How to run the autonomous car.</li>
+</ul>
+<h1 id="dpu-usage">DPU usage</h1>
+<h2 id="what-is-dpu">What is DPU?</h2>
+<p>The Xilinx&#xAE; Deep Learning Processor Unit (DPU) is a programmable engine optimized for convolutional
+neural networks. The unit includes a high performance scheduler module, a hybrid computing array
+module, an instruction fetch unit module, and a global memory pool module. The DPU uses a
+specialized instruction set, which allows for the efficient implementation of many convolutional neural
+networks.</p>
+<h2 id="library-libn2cube-usage">Library libn2cube usage:</h2>
+<ul>
+<li>Library libn2cube is the DNNDK core library. It implements the functionality of DPU loader, and
+encapsulates the system calls to invoke the DPU driver for DPU Task scheduling, monitoring, profiling,
+and resources management. </li>
+<li><p>Simple guide of libn2cube</p>
+<ol>
+<li>The information you need to know after the generation of .elf using the host part of DNNDK-v3.0(If you don&apos;t know what it is, please refer to the Host part guide of this project) is:<ul>
+<li>kernel name: KERNEL_CONV</li>
+<li>input node(s): CONV_INPUT_NODE</li>
+<li>output node(s): CONV_OUTPUT_NODE</li>
+</ul>
+</li>
+<li>Each DPU kernel supported by the DPU has a corresponding ELF object file with a name that is the same as the kernel name prefixed by dpu_ with extension .elf. So before compiling your code, you should put the .elf files into model directory and add their names to MODEL variable in Makefile. </li>
+<li><p>The sample flow of using DPU kernel:
+   ```c++
+   int main(void) {
+   /<em> DPU Kernels/Tasks for running ResNet-50 </em>/
+   DPUKernel<em> kernelConv;
+   DPUTask</em> taskConv;</p>
+<p>   /<em> Attach to DPU driver and prepare for running </em>/
+   dpuOpen();</p>
+<p>   /<em> Create DPU Kernels for CONV Nodes </em>/
+   kernelConv = dpuLoadKernel(KERNEL_CONV);</p>
+<p>   /<em> Create DPU Tasks for CONV Nodes</em>/
+   taskConv = dpuCreateTask(kernelConv, 0);</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>     /* Run CONV Kernel*/
+     Mat image = imread(baseImagePath + imageName);
+     dpuSetInputImage2(taskConv, CONV_INPUT_NODE, image);
+     dpuRunTask(taskConv);
+
+     /* Get inference result */
+     float scale = dpuGetOutputTensorScale(taskConv, CONV_OUTPUT_NODE);
+     modelRes = dpuGetTensorAddress(dpuGetOutputTensor(taskConv, CONV_OUTPUT_NODE));
+     dpuRunSoftmax(modelRes, smRes.data(), channel, 1, scale);
+
+
+     /* Destroy DPU Tasks &amp; release resources */
+     dpuDestroyTask(taskConv);
+
+     /* Destroy DPU Kernel &amp; release resources */
+     dpuDestroyKernel(kernelConv);
+
+     /* Detach DPU driver &amp; release resources */
+     dpuClose();
+     return 0;
+
+     ```
+</code></pre><ol>
+<li>The <code>main()</code> operations include:<ul>
+<li>Call <code>dpuOpen()</code> to open the DPU device.</li>
+<li>Call <code>dpuLoadKernel()</code> to load the DPU kernel reset50_0.</li>
+<li>Call <code>dpuCreateTask()</code> to create task for each DPU kernel.</li>
+<li>Call <code>dpuDestroyKernel()</code> and <code>dpuDestroyTask()</code> to destroy DPU kernel and task.</li>
+<li>Call <code>dpuClose()</code> to close the DPU device.</li>
+</ul>
+</li>
+<li>Run CONV Kernel include:<ul>
+<li>Get the image for processing and set it as input</li>
+<li>Run the task using <code>dpuRunTask()</code></li>
+<li>Get the output of the kernel and Run Softmax in it if needed</li>
+<li>If your model is regression model, you can just use the result without running softmax like <pre><code class="lang-c++">  <span class="hljs-keyword">float</span>* res = <span class="hljs-keyword">float</span>*(smRes.data()); <span class="hljs-keyword">float</span> final_res = res[<span class="hljs-number">0</span>] + res[<span class="hljs-number">1</span>]
+</code></pre>
+<ul>
+<li>What you need to modify according to your own model:</li>
+<li>Variables:</li>
+</ul>
+</li>
+<li>KERNEL_CONV, CONV_INPUT_NODE, CONV_OUTPUT_NODE</li>
+<li>vector<string> kinds: if you use classification model, you need to define your own categories<ol>
+<li>Functions:</li>
+</ol>
+</string></li>
+<li>setInputImage(): Replace it with your own image pre-process way</li>
+<li>topKind(): It will use the results of softmax function and output the final kind</li>
+<li>runCV(): This function is independent of DPU usage, you can add your cv control here</li>
+<li>If you use regression model, you don&apos;t need to use <code>topKind()</code> and softmax function, you should get the model output directly and add it in <code>addCommand()</code> and use it in <code>runCommand()</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="run-the-car">Run the car</h2>
+<pre><code class="lang-shell">cd ~/Car
+make run
+./build/run nn/cv # nn means just use ml, cv means use ml &amp; cv.
+</code></pre>
+<h1 id="references">References</h1>
+<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/ai_inference/v1_5/ug1327-dnndk-user-guide.pdf" target="_blank">libn2cube API</a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="collect_guide.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Collect Data">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Run the Car","level":"1.2.2","depth":2,"next":{"title":"[Host Part]","level":"1.3","depth":1,"ref":"","articles":[{"title":"DNNDK Usage","level":"1.3.1","depth":2,"path":"host-guide/dnndk_usage.md","ref":"host-guide/dnndk_usage.md","articles":[]},{"title":"Train & Compile","level":"1.3.2","depth":2,"path":"host-guide/train_compile.md","ref":"host-guide/train_compile.md","articles":[]}]},"previous":{"title":"Collect Data","level":"1.2.1","depth":2,"path":"pynq-guide/collect_guide.md","ref":"pynq-guide/collect_guide.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pynq-guide/run_guide.md","mtime":"2019-10-24T02:39:38.371Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-25T09:50:32.052Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
