@@ -142,12 +142,6 @@ def batch_generator(name_list, batch_size):
         #for index in np.random.permutation(X.shape[0]):
         for index in np.random.permutation(X.shape[0]):
             images[i] = X[index]
-            #if y[index][0] < 0:
-            #    labels[i] = [1.,0.,0.]
-            #elif y[index][0] > 0:
-            #    labels[i] = [0.,0.,1.]
-            #else:
-            #    labels[i] = [0.,1.,0.]
             if OUTPUT_NUM == 1:
                 labels[i] = [(y[index][0]+1.)/2.]
             elif OUTPUT_NUM ==2:

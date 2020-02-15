@@ -10,18 +10,15 @@ import cv2
 #from PIL import Image
 import os
 import numpy as np
-def image_handle(img):
-    return (img[40:,:])/255.0-0.5
+import glob
 CONV_INPUT = "conv2d_1_input"
 calib_batch_size = 50
 def calib_input(iter):
-  images = []
-  path = "../images/"
-  files = os.listdir(path)
-  for index in range(0, calib_batch_size):
-      if files[iter*calib_batch_size+index] == "train.csv" or (not os.path.exists(path+files[iter*calib_batch_size + index]) or os.path.getsize(path + files[iter*calib_batch_size + index])<1000):# it will ignore the images which are too small
-          continue
-      image = image_handle(cv2.imread(path + files[iter*calib_batch_size + index]))
-      images.append(image)
-  return {CONV_INPUT: images}
+    training_data = glob.glob("../training_data_npz/*.npz")
+    images = []
+    with np.load(training_data[iter%len(training_data)]) as data:
+        img_num_in_npz = len(data['train_imgs'])
+        for index in range(0, calib_batch_size):
+            images.append(data['train_imgs'][index%img_num_in_npz])
+    return {CONV_INPUT: images}
 

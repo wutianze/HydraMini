@@ -46,7 +46,7 @@ if __name__ == '__main__':
     parser.add_argument('--path', type=str, help='images dir', default="./images")
     parser.add_argument('--store', type=str, help='npz store dir', default="./training_data_npz")
     parser.add_argument('--method', type=int, help='whether to reduce some categories\' number, 0 for true', default=1)
-    parser.add_argument('--filter_size', type=int, help='size of smallest file', default=1000)
+    #parser.add_argument('--filter_size', type=int, help='size of smallest file', default=1000)
     parser.add_argument('--cut_head_size', type=int, help='top head of the image to cut', default=40)
     
     args = parser.parse_args()
@@ -58,8 +58,8 @@ if __name__ == '__main__':
     with open(path+"/train.csv") as f:
         files = list(csv.reader(f))
         for row in files:
-            if (not(os.path.exists(path+'/'+row[0]))) or os.path.getsize(path+'/'+row[0]) < args.filter_size:
-                continue
+            #if (not(os.path.exists(path+'/'+row[0]))) or os.path.getsize(path+'/'+row[0]) < args.filter_size:
+            #    continue
             
             if args.method == 0:
                 if float(row[1]) == 0: # this should be set according to your training data
