@@ -10,16 +10,32 @@
 # Summary
 
 * [Introduction](README.md)
-### Pynq Part
-* [Collect Data](Pynq-Z2_AD_Car/pynq-guide/collect_guide.md)
-* [Run the Car](Pynq-Z2_AD_Car/pynq-guide/run_guide.md)
-* [For Developer](Pynq-Z2_AD_Car/pynq-guide/developer_guide_pynq.md)
-### Host Part
-* [Preprocess & Train](Pynq-Z2_AD_Car/host-guide/preprocess_train.md)
-* [Quantize & Compile](Pynq-Z2_AD_Car/host-guide/quantize_compile.md)
-### Virtual Part
-* [Preparation](Pynq-Z2_AD_Car/virtual-guide/README.md)
-* [Custom Simulator](Pynq-Z2_AD_Car/virtual-guide/custom_simulator.md)
-### More Study Cases
-* [ROS](Pynq-Z2_AD_Car/more-study/ros.md)
+
+## Pynq Part
+
+How to collect training data and run the car.
+
+    * [Collect Data](docs/pynq-guide/collect_guide.md)
+    * [Run the Car](docs/pynq-guide/run_guide.md)
+    * [For Developer](docs/pynq-guide/developer_guide_pynq.md)
+
+## Host Part
+
+How to train AI model and use DNNDK.
+
+    * [Preprocess & Train](docs/host-guide/preprocess_train.md)
+    * [Quantize & Compile](docs/host-guide/quantize_compile.md)
+
+## Virtual Part
+
+How to play with the simulator.
+
+    * [Preparation](docs/virtual-guide/README.md)
+    * [Custom Simulator](docs/virtual-guide/custom_simulator.md)
+
+## More Study Cases
+
+If you still want to use ROS in HydraMini.
+
+    * [ROS](docs/more-study/ros.md)
 
