@@ -10,16 +10,16 @@
 # Summary
 
 * [Introduction](README.md)
-* [Pynq Part]
-    * [Collect Data](Pynq-Z2_AD_Car/pynq-guide/collect_guide.md)
-    * [Run the Car](Pynq-Z2_AD_Car/pynq-guide/run_guide.md)
-    * [For Developer](Pynq-Z2_AD_Car/pynq-guide/developer_guide_pynq.md)
-* [Host Part]
-    * [Preprocess & Train](Pynq-Z2_AD_Car/host-guide/preprocess_train.md)
-    * [Quantize & Compile](Pynq-Z2_AD_Car/host-guide/quantize_compile.md)
-* [Virtual Part]
-    * [Preparation](Pynq-Z2_AD_Car/virtual-guide/README.md)
-    * [Custom Simulator](Pynq-Z2_AD_Car/virtual-guide/custom_simulator.md)
-* [More Study Cases]
-    * [ROS](Pynq-Z2_AD_Car/more-study/ros.md)
+### Pynq Part
+* [Collect Data](Pynq-Z2_AD_Car/pynq-guide/collect_guide.md)
+* [Run the Car](Pynq-Z2_AD_Car/pynq-guide/run_guide.md)
+* [For Developer](Pynq-Z2_AD_Car/pynq-guide/developer_guide_pynq.md)
+### Host Part
+* [Preprocess & Train](Pynq-Z2_AD_Car/host-guide/preprocess_train.md)
+* [Quantize & Compile](Pynq-Z2_AD_Car/host-guide/quantize_compile.md)
+### Virtual Part
+* [Preparation](Pynq-Z2_AD_Car/virtual-guide/README.md)
+* [Custom Simulator](Pynq-Z2_AD_Car/virtual-guide/custom_simulator.md)
+### More Study Cases
+* [ROS](Pynq-Z2_AD_Car/more-study/ros.md)
 
