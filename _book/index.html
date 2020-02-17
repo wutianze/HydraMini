@@ -191,7 +191,7 @@
                 <a href="docs/virtual-guide/">
             
                     
-                    Preparation
+                    Play
             
                 </a>
             
@@ -282,8 +282,8 @@
  * @GitHub: wutianze
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-09-03 16:28:15
- * @LastEditors  : Sauron Wu
- * @LastEditTime : 2020-01-19 13:05:04
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-02-17 19:59:53
  * @Description: 
  -->
 <h1 id="build-your-own-autonomous-driving-car">Build your own Autonomous Driving Car</h1>
@@ -299,10 +299,11 @@
 </ul>
 <h2 id="learning-steps">Learning Steps</h2>
 <ol>
-<li>Read <code>pynq-guide/collect_guide.md</code> to learn how to use your keyboard for car controlling. And then collect some images for training.</li>
-<li>Read <code>host-guide/preprocess_train.md</code> and preprocess the collected images, then use the preprocessed images to train the model.</li>
-<li>Read <code>host-guide/quantize_compile.md</code> and do quantization and compilation to the model.</li>
-<li>Read <code>pynq-guide/run_guide.md</code> and run the autonomous driving car.</li>
+<li>Read <code>Pynq Part/Collect Data</code> to learn how to use your keyboard for car controlling. And then collect some images for training.</li>
+<li>Read <code>Host Part/Preprocess &amp; Train</code> and preprocess the collected images, then use the preprocessed images to train the model.</li>
+<li>Read <code>Host Part/Quantize &amp; Compile</code> and do quantization and compilation to the model.</li>
+<li>Read <code>Pynq Part/Run the Car</code> and run the autonomous driving car.</li>
+<li>If you want to try Autonomous Driving Simulator based on Unity3D, please refer to <code>Virtual Part</code>.</li>
 </ol>
 
                                 
@@ -343,7 +344,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Collect Data","level":"2.1","depth":1,"path":"docs/pynq-guide/collect_guide.md","ref":"docs/pynq-guide/collect_guide.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"README.md","mtime":"2020-02-17T11:26:36.935Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T11:43:30.522Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Collect Data","level":"2.1","depth":1,"path":"docs/pynq-guide/collect_guide.md","ref":"docs/pynq-guide/collect_guide.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"README.md","mtime":"2020-02-17T11:59:53.455Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T12:05:01.847Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -351,10 +352,6 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>

@@ -3,12 +3,12 @@
  * @GitHub: wutianze
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-09-23 10:12:28
- * @LastEditors  : Sauron Wu
- * @LastEditTime : 2020-01-19 11:53:32
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-02-17 20:04:37
  * @Description: 
  -->
 # Introduction
-The simulator we provided is based on the sdsandbox project. For more information about the initial project, please refer to [this](https://github.com/tawnkramer/sdsandbox). 
+The simulator we provided is based on the sdsandbox project, it is published in [Autonomous-Driving-Simulator](github.com/wutianze/Autonomous-Driving-Simulator). For more information about the initial project, please refer to [this](https://github.com/tawnkramer/sdsandbox). 
 
 # What you can do with the simulator
 - Collect training data
@@ -27,7 +27,6 @@ You can both use linux version or windows version of Unity3d.
 1) Start the prediction server with the pre-trained model. The server will run in local ip and port 9090. So you should set the client listen ip and port to the same, make sure the client can ping the server successfully. For example, if you run the `predict_server.py` in one PC whose ip is 192.168.43.101, you should set in HydraMini game 192.168.43.101. Please be aware that after changing the ip you should hit `NN Drive` to make it available.  
 
 ```bash
-cd Virtual-Part
 python src/predict_server.py --model=path-to-your-model/model.h5
 ```
  If you get a crash loading this model, you will not be able to run the demo. But you can still generate your own model. This is a problem between tensorflow/keras versions. 
@@ -80,7 +79,7 @@ You can hit `Camera Follow` button to choose whether to follow the car. If not, 
 1) Select `Start Build` to enter the build interface.
 ![b1](./build0.PNG)
 
-1) Use `Build Random` to generate a random road, use `Load Script` to open a redefined script and hit `Build Script` to build the script. We provide some scripts in `pynq_car\Virtual-Part\simulator\Road Scripts` for reference. Here is one example:
+1) Use `Build Random` to generate a random road, use `Load Script` to open a redefined script and hit `Build Script` to build the script. We provide some scripts in `simulator\Road Scripts` for reference. Here is one example:
 ![b2](./build1.PNG)
 
 3) Hit `Next Texture` to change the road style.

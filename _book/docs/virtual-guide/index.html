@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Preparation · HydraMini Guide</title>
+        <title>Play · HydraMini Guide</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -193,7 +193,7 @@
                 <a href="./">
             
                     
-                    Preparation
+                    Play
             
                 </a>
             
@@ -264,7 +264,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Preparation</a>
+        <a href="../.." >Play</a>
     </h1>
 </div>
 
@@ -284,12 +284,12 @@
  * @GitHub: wutianze
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-09-23 10:12:28
- * @LastEditors  : Sauron Wu
- * @LastEditTime : 2020-01-19 11:53:32
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-02-17 20:04:37
  * @Description: 
  -->
 <h1 id="introduction">Introduction</h1>
-<p>The simulator we provided is based on the sdsandbox project. For more information about the initial project, please refer to <a href="https://github.com/tawnkramer/sdsandbox" target="_blank">this</a>. </p>
+<p>The simulator we provided is based on the sdsandbox project, it is published in <a href="github.com/wutianze/Autonomous-Driving-Simulator">Autonomous-Driving-Simulator</a>. For more information about the initial project, please refer to <a href="https://github.com/tawnkramer/sdsandbox" target="_blank">this</a>. </p>
 <h1 id="what-you-can-do-with-the-simulator">What you can do with the simulator</h1>
 <ul>
 <li>Collect training data</li>
@@ -302,8 +302,7 @@
 <p>You can both use linux version or windows version of Unity3d. </p>
 <h2 id="using-unity3d-to-test-your-h5-model">Using Unity3d to test your .h5 model</h2>
 <p>1) Start the prediction server with the pre-trained model. The server will run in local ip and port 9090. So you should set the client listen ip and port to the same, make sure the client can ping the server successfully. For example, if you run the <code>predict_server.py</code> in one PC whose ip is 192.168.43.101, you should set in HydraMini game 192.168.43.101. Please be aware that after changing the ip you should hit <code>NN Drive</code> to make it available.  </p>
-<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> Virtual-Part
-python src/predict_server.py --model=path-to-your-model/model.h5
+<pre><code class="lang-bash">python src/predict_server.py --model=path-to-your-model/model.h5
 </code></pre>
 <p> If you get a crash loading this model, you will not be able to run the demo. But you can still generate your own model. This is a problem between tensorflow/keras versions. </p>
 <p>1) Load the Unity project </p>
@@ -348,7 +347,7 @@ python src/predict_server.py --model=path-to-your-model/model.h5
 <h3 id="build-road">Build Road</h3>
 <p>1) Select <code>Start Build</code> to enter the build interface.
 <img src="build0.PNG" alt="b1"></p>
-<p>1) Use <code>Build Random</code> to generate a random road, use <code>Load Script</code> to open a redefined script and hit <code>Build Script</code> to build the script. We provide some scripts in <code>pynq_car\Virtual-Part\simulator\Road Scripts</code> for reference. Here is one example:
+<p>1) Use <code>Build Random</code> to generate a random road, use <code>Load Script</code> to open a redefined script and hit <code>Build Script</code> to build the script. We provide some scripts in <code>simulator\Road Scripts</code> for reference. Here is one example:
 <img src="build1.PNG" alt="b2"></p>
 <p>3) Hit <code>Next Texture</code> to change the road style.
 <img src="build2.PNG" alt="b3"></p>
@@ -404,7 +403,7 @@ When you decide to collect some training data, you should hit <code>Set Log Dir<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Preparation","level":"4.1","depth":1,"next":{"title":"Custom Simulator","level":"4.2","depth":1,"path":"docs/virtual-guide/custom_simulator.md","ref":"docs/virtual-guide/custom_simulator.md","articles":[]},"previous":{"title":"Quantize & Compile","level":"3.2","depth":1,"path":"docs/host-guide/quantize_compile.md","ref":"docs/host-guide/quantize_compile.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/virtual-guide/README.md","mtime":"2020-02-17T11:26:36.987Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T11:43:30.522Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Play","level":"4.1","depth":1,"next":{"title":"Custom Simulator","level":"4.2","depth":1,"path":"docs/virtual-guide/custom_simulator.md","ref":"docs/virtual-guide/custom_simulator.md","articles":[]},"previous":{"title":"Quantize & Compile","level":"3.2","depth":1,"path":"docs/host-guide/quantize_compile.md","ref":"docs/host-guide/quantize_compile.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/virtual-guide/README.md","mtime":"2020-02-17T12:04:37.609Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T12:05:01.847Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -412,10 +411,6 @@ When you decide to collect some training data, you should hit <code>Set Log Dir<
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
-    
-        
-        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
