@@ -1,3 +1,11 @@
+<!--
+ * @Author: sauron
+ * @Date: 2020-02-17 19:26:36
+ * @LastEditTime: 2020-02-17 19:53:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /HydraMini/SUMMARY.md
+ -->
 # Summary
 
 * [Introduction](README.md)
@@ -12,7 +20,7 @@
 * [Quantize & Compile](docs/host-guide/quantize_compile.md)
 
 ## Virtual Part
-* [Preparation](docs/virtual-guide/README.md)
+* [Play](docs/virtual-guide/README.md)
 * [Custom Simulator](docs/virtual-guide/custom_simulator.md)
 
 -----
