@@ -1,0 +1,412 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Collect Data · HydraMini Guide</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Sauron Wu">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="run_guide.html" />
+    
+    
+    <link rel="prev" href="../../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pynq Part</li>
+        
+        
+    
+        <li class="chapter active" data-level="2.1" data-path="collect_guide.html">
+            
+                <a href="collect_guide.html">
+            
+                    
+                    Collect Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="run_guide.html">
+            
+                <a href="run_guide.html">
+            
+                    
+                    Run the Car
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="developer_guide_pynq.html">
+            
+                <a href="developer_guide_pynq.html">
+            
+                    
+                    For Developer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Host Part</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../host-guide/preprocess_train.html">
+            
+                <a href="../host-guide/preprocess_train.html">
+            
+                    
+                    Preprocess & Train
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../host-guide/quantize_compile.html">
+            
+                <a href="../host-guide/quantize_compile.html">
+            
+                    
+                    Quantize & Compile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Virtual Part</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../virtual-guide/">
+            
+                <a href="../virtual-guide/">
+            
+                    
+                    Preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../virtual-guide/custom_simulator.html">
+            
+                <a href="../virtual-guide/custom_simulator.html">
+            
+                    
+                    Custom Simulator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../more-study/ros.html">
+            
+                <a href="../more-study/ros.html">
+            
+                    
+                    ROS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Collect Data</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: Sauron Wu
+ * @GitHub: wutianze
+ * @Email: 1369130123qq@gmail.com
+ * @Date: 2019-10-14 14:57:47
+ * @LastEditors  : Sauron Wu
+ * @LastEditTime : 2020-01-07 15:20:23
+ * @Description: 
+ -->
+<h1 id="what-you-will-learn">What you will learn:</h1>
+<ul>
+<li>How to collect training data.</li>
+<li>How to define your own controller.</li>
+</ul>
+<h2 id="step-1">Step 1:</h2>
+<p>Do some preparations. <code>ini.sh</code> will help you load the dpu.ko and set X11.</p>
+<pre><code class="lang-shell">cd ~/Car
+su
+chmod +x ./ini.sh
+./ini.sh
+</code></pre>
+<p>You can also run the commands in <code>ini.sh</code> step by step:</p>
+<pre><code>su
+insmod /home/xilinx/dpu.ko # load dpu.ko
+xauth merge /home/xilinx/.Xauthority # X11 config
+rm -rf build # clear exist directory
+mkdir build # build compile directory
+</code></pre><h2 id="step2">Step2:</h2>
+<p>Compile the code and try.</p>
+<pre><code class="lang-shell">make collect
+rm -rf images
+.build/collect 20000 0.5 1 # 20000 means how many pictures you need to collect, 0.5 means the speed of your car, 1 means whether to show the pictures in your host(0 recommended which means not show)
+</code></pre>
+<p>Now you will see a small window in your PC and you can use your keyboard to control your car:</p>
+<ul>
+<li>w: move forward and faster</li>
+<li>a: turn left</li>
+<li>d: turn right</li>
+<li>s: move slower</li>
+<li>t: start to save images until the number of pictures reach the threshold you set before, you can press it again to stop the save process until next press</li>
+<li>r: remove some images when you control your car in a wrong way and don&apos;t want to start all over. You need to input the number to delete in terminal, remember to change back to the cv window after finished and press <code>t</code> to collect.</li>
+<li>Esc: stop the whole process
+The pictures and labels are saved in the directory <code>images</code>.
+<em>Every time before you want to collect images, you should remove <code>images</code> directory first</em></li>
+</ul>
+<h1 id="next">Next</h1>
+<p>Now you have collected the data for later training. Next, you will use host pc to train the network.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="run_guide.html" class="navigation navigation-next " aria-label="Next page: Run the Car">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Collect Data","level":"2.1","depth":1,"next":{"title":"Run the Car","level":"2.2","depth":1,"path":"docs/pynq-guide/run_guide.md","ref":"docs/pynq-guide/run_guide.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/pynq-guide/collect_guide.md","mtime":"2020-02-17T11:26:36.967Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T11:43:30.522Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

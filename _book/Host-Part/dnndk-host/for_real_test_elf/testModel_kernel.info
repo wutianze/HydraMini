@@ -1,0 +1,15 @@
+
+DNNC Kernel Information
+
+1. Overview
+kernel numbers  : 1
+kernel topology : testModel_kernel_graph.jpg
+
+2. Kernel Description in Detail
+kernel id       : 0
+kernel name     : testModel
+type            : DPUKernel
+nodes           : NA
+input node(s)   : conv2d_1_convolution(0) 
+output node(s)  : dense_3_MatMul(0) 
+

@@ -1,0 +1,386 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Introduction · HydraMini Guide</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Sauron Wu">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="docs/pynq-guide/collect_guide.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter active" data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pynq Part</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="docs/pynq-guide/collect_guide.html">
+            
+                <a href="docs/pynq-guide/collect_guide.html">
+            
+                    
+                    Collect Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="docs/pynq-guide/run_guide.html">
+            
+                <a href="docs/pynq-guide/run_guide.html">
+            
+                    
+                    Run the Car
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="docs/pynq-guide/developer_guide_pynq.html">
+            
+                <a href="docs/pynq-guide/developer_guide_pynq.html">
+            
+                    
+                    For Developer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Host Part</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="docs/host-guide/preprocess_train.html">
+            
+                <a href="docs/host-guide/preprocess_train.html">
+            
+                    
+                    Preprocess & Train
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/host-guide/quantize_compile.html">
+            
+                <a href="docs/host-guide/quantize_compile.html">
+            
+                    
+                    Quantize & Compile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Virtual Part</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="docs/virtual-guide/">
+            
+                <a href="docs/virtual-guide/">
+            
+                    
+                    Preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="docs/virtual-guide/custom_simulator.html">
+            
+                <a href="docs/virtual-guide/custom_simulator.html">
+            
+                    
+                    Custom Simulator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="docs/more-study/ros.html">
+            
+                <a href="docs/more-study/ros.html">
+            
+                    
+                    ROS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Introduction</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: Sauron Wu
+ * @GitHub: wutianze
+ * @Email: 1369130123qq@gmail.com
+ * @Date: 2019-09-03 16:28:15
+ * @LastEditors  : Sauron Wu
+ * @LastEditTime : 2020-01-19 13:05:04
+ * @Description: 
+ -->
+<h1 id="build-your-own-autonomous-driving-car">Build your own Autonomous Driving Car</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Enjoy the fun of your own autonomous driving car with the support of DPU&#xFF0C; feel free to try your own AI model and new ideas.</p>
+<h2 id="material">Material</h2>
+<p>Download the image we provided <a href="https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLklID3Q" target="_blank">here</a>. To understand the whole project well, you can read the paper we published in FPT2019 <a href="https://easychair.org/publications/preprint/GMvL" target="_blank">here</a>. And here is one simple guide written in Chinese, <a href="https://blog.csdn.net/qq_25762163/article/details/103591878" target="_blank">Xilinx HydraMini&#x8BD5;&#x73A9;&#x6559;&#x7A0B;</a></p>
+<h2 id="preparations">Preparations</h2>
+<ul>
+<li>The host pc should be ubuntu 16.04, you can refer to <a href="https://github.com/wutianze/dnndk3.0-pynqz2" target="_blank">this</a> to build an environment for DNNDK_v3.0 using tensorflow. If you want to run the simulator, refer to <a href="https://github.com/wutianze/Autonomous-Driving-Simulator" target="_blank">Autonomous-Driving-Simulator</a> to set the Unity3d environment.</li>
+<li>Power the Pynq-Z2 in your car and run <code>nmtui</code> to connect the car to your switch(make sure your PC connected to the same).</li>
+<li>Read the guides.</li>
+</ul>
+<h2 id="learning-steps">Learning Steps</h2>
+<ol>
+<li>Read <code>pynq-guide/collect_guide.md</code> to learn how to use your keyboard for car controlling. And then collect some images for training.</li>
+<li>Read <code>host-guide/preprocess_train.md</code> and preprocess the collected images, then use the preprocessed images to train the model.</li>
+<li>Read <code>host-guide/quantize_compile.md</code> and do quantization and compilation to the model.</li>
+<li>Read <code>pynq-guide/run_guide.md</code> and run the autonomous driving car.</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="docs/pynq-guide/collect_guide.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Collect Data">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Collect Data","level":"2.1","depth":1,"path":"docs/pynq-guide/collect_guide.md","ref":"docs/pynq-guide/collect_guide.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"README.md","mtime":"2020-02-17T11:26:36.935Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T11:43:30.522Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

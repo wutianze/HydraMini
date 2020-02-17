@@ -1,0 +1,447 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Preparation · HydraMini Guide</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Sauron Wu">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="custom_simulator.html" />
+    
+    
+    <link rel="prev" href="../host-guide/quantize_compile.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pynq Part</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../pynq-guide/collect_guide.html">
+            
+                <a href="../pynq-guide/collect_guide.html">
+            
+                    
+                    Collect Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../pynq-guide/run_guide.html">
+            
+                <a href="../pynq-guide/run_guide.html">
+            
+                    
+                    Run the Car
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../pynq-guide/developer_guide_pynq.html">
+            
+                <a href="../pynq-guide/developer_guide_pynq.html">
+            
+                    
+                    For Developer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Host Part</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../host-guide/preprocess_train.html">
+            
+                <a href="../host-guide/preprocess_train.html">
+            
+                    
+                    Preprocess & Train
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../host-guide/quantize_compile.html">
+            
+                <a href="../host-guide/quantize_compile.html">
+            
+                    
+                    Quantize & Compile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Virtual Part</li>
+        
+        
+    
+        <li class="chapter active" data-level="4.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="custom_simulator.html">
+            
+                <a href="custom_simulator.html">
+            
+                    
+                    Custom Simulator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../more-study/ros.html">
+            
+                <a href="../more-study/ros.html">
+            
+                    
+                    ROS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Preparation</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: Sauron Wu
+ * @GitHub: wutianze
+ * @Email: 1369130123qq@gmail.com
+ * @Date: 2019-09-23 10:12:28
+ * @LastEditors  : Sauron Wu
+ * @LastEditTime : 2020-01-19 11:53:32
+ * @Description: 
+ -->
+<h1 id="introduction">Introduction</h1>
+<p>The simulator we provided is based on the sdsandbox project. For more information about the initial project, please refer to <a href="https://github.com/tawnkramer/sdsandbox" target="_blank">this</a>. </p>
+<h1 id="what-you-can-do-with-the-simulator">What you can do with the simulator</h1>
+<ul>
+<li>Collect training data</li>
+<li>Test your model or algorithms in the virtual world</li>
+<li>Build some exciting roads</li>
+<li>Play computer games only(not recommend)</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>You need to have <a href="https://unity3d.com/get-unity/download" target="_blank">Unity</a> installed, and python3+, tensorflow, keras is also needed.</p>
+<p>You can both use linux version or windows version of Unity3d. </p>
+<h2 id="using-unity3d-to-test-your-h5-model">Using Unity3d to test your .h5 model</h2>
+<p>1) Start the prediction server with the pre-trained model. The server will run in local ip and port 9090. So you should set the client listen ip and port to the same, make sure the client can ping the server successfully. For example, if you run the <code>predict_server.py</code> in one PC whose ip is 192.168.43.101, you should set in HydraMini game 192.168.43.101. Please be aware that after changing the ip you should hit <code>NN Drive</code> to make it available.  </p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> Virtual-Part
+python src/predict_server.py --model=path-to-your-model/model.h5
+</code></pre>
+<p> If you get a crash loading this model, you will not be able to run the demo. But you can still generate your own model. This is a problem between tensorflow/keras versions. </p>
+<p>1) Load the Unity project </p>
+<p>2) Hit the <code>Start Drive</code> button to start. Then hit <code>NN Drive</code>. If your connection fails, you should check your predict_server process. </p>
+<h2 id="use--modify-predictserverpy">Use &amp; Modify predict_server.py</h2>
+<p>The script is used for build a server, the server will receive image data from the game and send the control commands back. Now let&apos;s see how it works.</p>
+<ul>
+<li>You can set the ip address and port by <code>--host= --port=</code>.</li>
+<li>We provide two control method for you to choose. You can set it by <code>--control_method=</code>. The code is in <code>on_parsed_outputs()</code>.<ol>
+<li>Method <code>0</code> means the model output is softmax output. The output array has three elements. The first element means turn left, second means go straight, third means turn left. The throttle will always on.</li>
+<li>Method <code>1</code> means the model output is two value. The first means steer value, the second means the speed value. The max speed now is 6.</li>
+</ol>
+</li>
+<li>When use <code>NN Drive</code> in the game, the image sent from the game to predict sever will be processed in <code>on_telemetry()</code>, now we will cut the top 40 lines of the image and each pixel will be normalized.</li>
+</ul>
+<h2 id="build-your-own-road-using-scripts">Build Your Own Road using Scripts</h2>
+<ul>
+<li>S n
+  This means to build straight road for n length.</li>
+<li>DY n
+  This means the road will curve, the bigger n means bigger angle.</li>
+<li>L n
+  This always follows DY, means build road with the pre-set angle by DY, and the road will turn left, n is the length, the direction degrees will change the value set by DY every step.</li>
+<li>R n
+  Like L, this means to turn right.</li>
+<li>BLOCK n1 n2, CONE n1 n2
+  This will add a block/cone in the road. n1 means how far it is from the road(&gt;0 means moving to left, &lt;0 means moving to right), n2 means the orientation of it.</li>
+</ul>
+<h2 id="how-to-play">How to Play</h2>
+<h3 id="camera-follow">Camera Follow</h3>
+<p>You can hit <code>Camera Follow</code> button to choose whether to follow the car. If not, you can use your mouse&apos;s right button to change the angle of view, use the roller to see in different height, use the direction key to move your view.</p>
+<h3 id="open-the-project-in-unity3d">Open the project in Unity3d</h3>
+<p>1) Load the Unity project Virtual-Part/simulator in Unity.<br><img src="1.PNG" alt="Step 1">  </p>
+<p>2) Hit the start arrow in Unity to launch project.<br><img src="2.PNG" alt="Step 2"></p>
+<h3 id="open-the-hydraminiexe">Open the HydraMini.exe</h3>
+<p>1) Click <code>HydraMini.exe</code> to start the game, if in linux, run <code>./HydraMini.exe</code>.
+<img src="start0.PNG" alt="s0"></p>
+<p>2) Before start, you can set the window size, I don&apos;t recommend that you play in full-screen since you will have trouble exiting the game.
+<img src="start1.PNG" alt="s1"></p>
+<p>3) You can set the control method in <code>Input</code>, modify the Horizontal and Vertical buttons as you like(now is <code>WASD</code>), you can also use a joystick to control. Since the direction keys are for view change, you should not use them for controlling the car.
+<img src="start2.PNG" alt="s2"></p>
+<h3 id="build-road">Build Road</h3>
+<p>1) Select <code>Start Build</code> to enter the build interface.
+<img src="build0.PNG" alt="b1"></p>
+<p>1) Use <code>Build Random</code> to generate a random road, use <code>Load Script</code> to open a redefined script and hit <code>Build Script</code> to build the script. We provide some scripts in <code>pynq_car\Virtual-Part\simulator\Road Scripts</code> for reference. Here is one example:
+<img src="build1.PNG" alt="b2"></p>
+<p>3) Hit <code>Next Texture</code> to change the road style.
+<img src="build2.PNG" alt="b3"></p>
+<h3 id="control-the-car">Control the Car</h3>
+<p>1) In the main menu, select <code>Start Drive</code> to start drive.
+<img src="drive0.PNG" alt="d1"></p>
+<p>2) In the drive interface, the top 3 buttons means how to control the car. <code>PID Drive</code> means using PID algorithm to control the car; <code>NN Drive</code> means using neural network to control the car, in this mode you should start <code>predict_server</code> and set the ip(default is 127.0.0.1) first; <code>Human Drive</code> means using your keyboard or joystick to control the car, <code>WASD</code> or any settings can be used. You can set the control method while entering the game.
+When you decide to collect some training data, you should hit <code>Set Log Dir</code> to choose the directory to store the data, then you can enter a number in <code>Enter how many</code> to set the max number of frames you want to collect, the record process will stop when reach max number, the default number is 50000. Hit <code>Start Record or Stop Record</code> to continue or stop the record process. I recommend that you start recording after starting the car. Also you can hit <code>Back to Start Point</code> button to move the car to the start point, this is useful if your road is not a circle.
+<img src="drive1.PNG" alt="d2"></p>
+<h1 id="the-log-style">The Log style</h1>
+<p>The log is the same as real car: <code>Img Name,Steer,Speed</code>, the image size is 160*120.</p>
+<h2 id="if-you-want-to-make-some-changes-to-the-simulator-please-read-customsimulatormd">If you want to make some changes to the simulator, please read custom_simulator.md.</h2>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../host-guide/quantize_compile.html" class="navigation navigation-prev " aria-label="Previous page: Quantize & Compile">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="custom_simulator.html" class="navigation navigation-next " aria-label="Next page: Custom Simulator">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Preparation","level":"4.1","depth":1,"next":{"title":"Custom Simulator","level":"4.2","depth":1,"path":"docs/virtual-guide/custom_simulator.md","ref":"docs/virtual-guide/custom_simulator.md","articles":[]},"previous":{"title":"Quantize & Compile","level":"3.2","depth":1,"path":"docs/host-guide/quantize_compile.md","ref":"docs/host-guide/quantize_compile.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/virtual-guide/README.md","mtime":"2020-02-17T11:26:36.987Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T11:43:30.522Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

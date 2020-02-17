@@ -1,0 +1,421 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Custom Simulator · HydraMini Guide</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Sauron Wu">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../more-study/ros.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pynq Part</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../pynq-guide/collect_guide.html">
+            
+                <a href="../pynq-guide/collect_guide.html">
+            
+                    
+                    Collect Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../pynq-guide/run_guide.html">
+            
+                <a href="../pynq-guide/run_guide.html">
+            
+                    
+                    Run the Car
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../pynq-guide/developer_guide_pynq.html">
+            
+                <a href="../pynq-guide/developer_guide_pynq.html">
+            
+                    
+                    For Developer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Host Part</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../host-guide/preprocess_train.html">
+            
+                <a href="../host-guide/preprocess_train.html">
+            
+                    
+                    Preprocess & Train
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../host-guide/quantize_compile.html">
+            
+                <a href="../host-guide/quantize_compile.html">
+            
+                    
+                    Quantize & Compile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Virtual Part</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.2" data-path="custom_simulator.html">
+            
+                <a href="custom_simulator.html">
+            
+                    
+                    Custom Simulator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../more-study/ros.html">
+            
+                <a href="../more-study/ros.html">
+            
+                    
+                    ROS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Custom Simulator</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: Sauron Wu
+ * @GitHub: wutianze
+ * @Email: 1369130123qq@gmail.com
+ * @Date: 2019-10-16 10:23:58
+ * @LastEditors  : Sauron Wu
+ * @LastEditTime : 2020-01-10 11:40:29
+ * @Description: 
+ -->
+<h1 id="notice">Notice</h1>
+<p>If you want to make changes to the simulator, at least you should be familiar with C#, Python3, Unity3d and know some knowledge about how to build a network server. Before you start, I recommend that you go to <a href="https://github.com/tawnkramer/sdsandbox" target="_blank">Tawn Kramer&apos;s project</a> first and read his documents and code.</p>
+<h1 id="project-structure-guide">Project structure guide</h1>
+<ol>
+<li>The most important script is <code>Car.cs &amp; ICar.cs</code>, you should read the files carefully and understand how the car works.</li>
+<li>The Control commands can be changed in <code>JoystickCarControl.cs</code></li>
+<li>The training data style can be changed in <code>Logger.cs</code></li>
+<li>You should enable the hidden buttons in <code>Canvas/Panel</code> Menu like ManualTraingData</li>
+<li>The tcp control can be changed in <code>Script/tcp/TcpCarHandler.cs</code>, and you need to change the <code>predict_server.py</code> to communicate with the car correctly.</li>
+<li>I recommend to use PID function to generate training data, you can define your own PID control in <code>PIDController.cs</code>.</li>
+<li>You can read road info and build it by setting the <code>Do Build Road &amp; Do Load Script Path</code> and indicating the <code>Path To Load</code>.</li>
+<li>Set the MainCamera&apos;s <code>ifFollow</code> to decide whether to watch following the car. </li>
+</ol>
+<h1 id="carcs">Car.cs</h1>
+<ul>
+<li><code>RequestThrottle() &amp; RequestSteering()</code> are two main functions which are used to control the car.</li>
+<li>You can change <code>maxTorque</code> to control the power of accelerator and <code>maxSpeed</code> to control the max Speed of the car. Remember the <code>Throttle</code> value doesn&apos;t mean the speed of car but the accelerator&apos;s force, you can use <code>car.GetVelocity().magnitude</code> to get the speed of the car, more information about WheelCollider and velocity please read the documents of Unity3d.</li>
+</ul>
+<h1 id="joystickcarcontrolcs">JoystickCarControl.cs</h1>
+<ul>
+<li>The <code>GetAxis()</code> function will get the Axis value in Unity3d, the x,y values will be used to calculate the steering and throttle values. These two values will be sent to the car and control the car&apos;s direction and speed.</li>
+<li>The Axis control of Unity3d is performed by keyboard, &apos;w,a,s,d&apos; is used to change the value, you can try driving the car using Joystick control to see how it works. Also, you can define your own control functions, you can read the code in the comments for reference. Remember, the functions you use to send info to the car must exist in <code>Car.cs</code>. Take <code>RequestCommand() &amp; GetComNow()</code> in <code>Car.cs</code> as an example.</li>
+</ul>
+<h1 id="loggercs">Logger.cs</h1>
+<ul>
+<li>Now we define our Pynq-Style record structure in <code>Logger.cs</code>. You can define your own styles of record by the following steps:<ol>
+<li>Define a boolean value to claim your style, when you use one style, you should make sure that the other styles&apos; boolean values must be false. For example, <code>public bool MyStyle = true</code>.</li>
+<li>In <code>Awake()</code>, define your outputFilename, the file will record all your info costumed.</li>
+<li>In <code>Update()</code>, refer to PynqStyle and write your own record format. Usually, you can record the status of the car or the command you send to the car.</li>
+<li>Implement your image name generating function like <code>GetPynqStyleImageFilename()</code> and use the function in <code>SaveCamSensor()</code> which will save the images taken from the camera.</li>
+</ol>
+</li>
+<li>You can add your own Get* functions in <code>Car.cs</code> and use them to get the info you want to record.</li>
+</ul>
+<h1 id="tcpcarhandlercs--predictserverpy">TcpCarHandler.cs &amp; predict_server.py</h1>
+<ul>
+<li>Read <code>OnControlsRecv() &amp; OnPynqControlsRecv()</code>, you can add your own messages just the same and define your own handlers. Pay attention that the json&apos;s key value must match what you send from <code>predict_server.py</code> .</li>
+<li>Read <code>SendTelemetry()</code>, the information in this function will be sent to <code>predict_server.py</code>, now we will only use the field <code>image</code> as the input of our model, you can add whatever you like in <code>SendTelemetry()</code> and handle them in <code>predict_server.py</code>.</li>
+<li>Read <code>PynqSimMsgHandler</code> in <code>predict_server.py</code>, it&apos;s easy for you to build your own handler. The data received from Unity3d is processed in <code>on_telemetry()</code>, the control message is sent to the car through <code>send_control*()</code>.</li>
+</ul>
+<h1 id="pidcontrollercs">PIDController.cs</h1>
+<ul>
+<li>We all know that the quantity of training data is key to a good trained model. However, if your Joystick controller code is bull shit or you are not a good game player, it&apos;s hard to generate good training data. But since we are the master in virtual world, we can generate the training data automatically.</li>
+<li>Read <code>Update()</code> and find where it uses <code>RequestThrottle() &amp; RequestSteering()</code> then you will understand how the PID controller works, and will be able to define your own functions.</li>
+</ul>
+<h1 id="more">More</h1>
+<p>The simulator has more features for you to explore, you can build your own terrain, road, obstacles etc. You can checkout to the dev branch of original sdsandbox to learn more.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Preparation">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../more-study/ros.html" class="navigation navigation-next " aria-label="Next page: ROS">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Custom Simulator","level":"4.2","depth":1,"next":{"title":"ROS","level":"5.1","depth":1,"path":"docs/more-study/ros.md","ref":"docs/more-study/ros.md","articles":[]},"previous":{"title":"Preparation","level":"4.1","depth":1,"path":"docs/virtual-guide/README.md","ref":"docs/virtual-guide/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/virtual-guide/custom_simulator.md","mtime":"2020-02-17T11:26:36.995Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T11:43:30.522Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

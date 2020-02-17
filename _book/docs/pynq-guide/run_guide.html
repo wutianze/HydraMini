@@ -1,0 +1,405 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Run the Car · HydraMini Guide</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Sauron Wu">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="developer_guide_pynq.html" />
+    
+    
+    <link rel="prev" href="collect_guide.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pynq Part</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="collect_guide.html">
+            
+                <a href="collect_guide.html">
+            
+                    
+                    Collect Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.2" data-path="run_guide.html">
+            
+                <a href="run_guide.html">
+            
+                    
+                    Run the Car
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="developer_guide_pynq.html">
+            
+                <a href="developer_guide_pynq.html">
+            
+                    
+                    For Developer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Host Part</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../host-guide/preprocess_train.html">
+            
+                <a href="../host-guide/preprocess_train.html">
+            
+                    
+                    Preprocess & Train
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../host-guide/quantize_compile.html">
+            
+                <a href="../host-guide/quantize_compile.html">
+            
+                    
+                    Quantize & Compile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Virtual Part</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../virtual-guide/">
+            
+                <a href="../virtual-guide/">
+            
+                    
+                    Preparation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../virtual-guide/custom_simulator.html">
+            
+                <a href="../virtual-guide/custom_simulator.html">
+            
+                    
+                    Custom Simulator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../more-study/ros.html">
+            
+                <a href="../more-study/ros.html">
+            
+                    
+                    ROS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Run the Car</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: Sauron Wu
+ * @GitHub: wutianze
+ * @Email: 1369130123qq@gmail.com
+ * @Date: 2019-10-15 09:17:19
+ * @LastEditors  : Sauron Wu
+ * @LastEditTime : 2019-12-24 11:43:44
+ * @Description: 
+ -->
+<h1 id="what-you-will-learn">What you will learn:</h1>
+<ul>
+<li>How to run the autonomous car.</li>
+</ul>
+<h1 id="what-you-need-to-modify-according-to-your-own-model">What you need to modify according to your own model:</h1>
+<ol>
+<li>Variables:<ul>
+<li><code>KERNEL_CONV</code> is the <code>net_name</code> parameter in <code>compile.sh</code>, <code>CONV_INPUT_NODE &amp; CONV_OUTPUT_NODE</code> are the <code>input_nodes &amp; output_nodes</code> in <code>quant.sh</code>.</li>
+<li><code>CUT_SIZE</code> is the number of lines to cut in initial images(be the same in <code>process_img.py</code>). <code>STORESIZE_WIDTH &amp; STORESIZE_HEIGHT</code> are the size of taken images. The final input size is <code>STORESIZE_WIDTH</code> * (<code>STORESIZE_HEIGHT</code> - <code>CUT_SIZE</code>).</li>
+</ul>
+</li>
+<li>Functions:<ul>
+<li><code>setInputImage()</code>: Replace the image preprocess with your own. Now the preprocess is:<pre><code class="lang-c++">data[j*image.rows*<span class="hljs-number">3</span>+k*<span class="hljs-number">3</span>+i] = (<span class="hljs-keyword">float</span>(image.at&lt;Vec3b&gt;(j,k)[i])/<span class="hljs-number">255.0</span> - <span class="hljs-number">0.5</span>)*scale;
+</code></pre>
+</li>
+<li><code>topKind()</code>: It will use the results of softmax function and output the final kind, you only need it if you use classification model</li>
+<li><code>runCV()</code>: This function is independent of DPU usage, you can add your cv control in it.</li>
+<li>If you use regression model, you don&apos;t need to use <code>topKind()</code> and softmax function, you should get the model output directly and add it in <code>addSteer()</code> or <code>addSteer_Throttle</code> instead of <code>addCommand()</code> and use it in <code>run_steer()</code> or <code>run_steer_throttle()</code> instead of <code>run_command()</code>.</li>
+</ul>
+</li>
+<li>Output handle:
+The quantity of the model output is influenced by many factors. You can adjust the output to make the car run well. For example, if the car has a tendency to turn left, you can increase the steer value to make it normal.</li>
+</ol>
+<h1 id="run-the-car">Run the car</h1>
+<pre><code class="lang-shell">cd ~/Car
+make run
+./build/run n 0.5 # Usage of this exe: ./car c/n 0.5(run speed)
+</code></pre>
+<p>The first parameter means the run mode, <code>n</code> for only using neural network, <code>c</code> for using both neural network and computer vision functions. The second parameter is used unless the model outputs throttle value directly.</p>
+<h1 id="references">References</h1>
+<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/ai_inference/v1_5/ug1327-dnndk-user-guide.pdf" target="_blank">libn2cube API</a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="collect_guide.html" class="navigation navigation-prev " aria-label="Previous page: Collect Data">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="developer_guide_pynq.html" class="navigation navigation-next " aria-label="Next page: For Developer">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Run the Car","level":"2.2","depth":1,"next":{"title":"For Developer","level":"2.3","depth":1,"path":"docs/pynq-guide/developer_guide_pynq.md","ref":"docs/pynq-guide/developer_guide_pynq.md","articles":[]},"previous":{"title":"Collect Data","level":"2.1","depth":1,"path":"docs/pynq-guide/collect_guide.md","ref":"docs/pynq-guide/collect_guide.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/pynq-guide/run_guide.md","mtime":"2020-02-17T11:26:36.967Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T11:43:30.522Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

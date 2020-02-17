@@ -3,8 +3,8 @@
  * @GitHub: wutianze
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-09-03 16:28:15
- * @LastEditors  : Sauron Wu
- * @LastEditTime : 2020-01-19 13:05:04
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-02-17 19:50:08
  * @Description: 
  -->
 # Build your own Autonomous Driving Car
@@ -20,9 +20,10 @@ Download the image we provided [here](https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLk
 - Read the guides.
 
 ## Learning Steps
-1. Read `pynq-guide/collect_guide.md` to learn how to use your keyboard for car controlling. And then collect some images for training.
-2. Read `host-guide/preprocess_train.md` and preprocess the collected images, then use the preprocessed images to train the model.
-3. Read `host-guide/quantize_compile.md` and do quantization and compilation to the model.
-4. Read `pynq-guide/run_guide.md` and run the autonomous driving car.
+1. Read `Pynq Part/Collect Data` to learn how to use your keyboard for car controlling. And then collect some images for training.
+2. Read `Host Part/Preprocess & Train` and preprocess the collected images, then use the preprocessed images to train the model.
+3. Read `Host Part/Quantize & Compile` and do quantization and compilation to the model.
+4. Read `Pynq Part/Run the Car` and run the autonomous driving car.
+5. If you want to try Autonomous Driving Simulator based on Unity3D, please refer to `Virtual Part`.
 
 
