@@ -3,11 +3,10 @@
  * @GitHub: wutianze
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-12-24 15:55:57
- * @LastEditors  : Sauron Wu
- * @LastEditTime : 2019-12-24 16:02:28
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-02-17 20:33:54
  * @Description: How to set the hardware value.
  -->
-
 # Guide For Developer
 Show you the detail of HydraMini in Pynq-Part including keyboard control, motor value set and DPU c++ library usage.
 

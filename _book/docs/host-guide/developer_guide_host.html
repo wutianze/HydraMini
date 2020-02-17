@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>ROS · HydraMini Guide</title>
+        <title>For Developer · HydraMini Guide</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="../virtual-guide/" />
     
-    <link rel="prev" href="../virtual-guide/custom_simulator.html" />
+    
+    <link rel="prev" href="quantize_compile.html" />
     
 
     </head>
@@ -153,9 +155,9 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../host-guide/preprocess_train.html">
+        <li class="chapter " data-level="3.1" data-path="preprocess_train.html">
             
-                <a href="../host-guide/preprocess_train.html">
+                <a href="preprocess_train.html">
             
                     
                     Preprocess & Train
@@ -166,9 +168,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="../host-guide/quantize_compile.html">
+        <li class="chapter " data-level="3.2" data-path="quantize_compile.html">
             
-                <a href="../host-guide/quantize_compile.html">
+                <a href="quantize_compile.html">
             
                     
                     Quantize & Compile
@@ -179,9 +181,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="../host-guide/developer_guide_host.html">
+        <li class="chapter active" data-level="3.3" data-path="developer_guide_host.html">
             
-                <a href="../host-guide/developer_guide_host.html">
+                <a href="developer_guide_host.html">
             
                     
                     For Developer
@@ -232,9 +234,9 @@
         
         
     
-        <li class="chapter active" data-level="5.1" data-path="ros.html">
+        <li class="chapter " data-level="5.1" data-path="../more-study/ros.html">
             
-                <a href="ros.html">
+                <a href="../more-study/ros.html">
             
                     
                     ROS
@@ -275,7 +277,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >ROS</a>
+        <a href="../.." >For Developer</a>
     </h1>
 </div>
 
@@ -290,49 +292,29 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <!--
- * @Author: Sauron Wu
- * @GitHub: wutianze
- * @Email: 1369130123qq@gmail.com
- * @Date: 2019-10-28 15:12:00
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-02-17 20:33:33
- * @Description: 
- -->
-<h1 id="ros-install-in-pynq">ROS install in Pynq:</h1>
-<ul>
-<li>In terminal type <code>export ROS_OS_OVERRIDE=ubuntu:bionic</code>.</li>
-<li>In terminal type <code>sudo sh -c &apos;echo &quot;deb http://packages.ros.org/ros/ubuntu bionic main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&apos;</code></li>
-<li>Continue to follow instructions from <a href="http://wiki.ros.org/melodic/Installation/Ubuntu" target="_blank">here</a> starting from &#x201C;1.3 Set up your keys&#x201D;.</li>
-</ul>
-<h1 id="ros-install-in-host">ROS install in Host:</h1>
-<p>Refer to ROS official website and download ROS according to your system.</p>
-<h1 id="install-laser-driver-for-leishen-ls01d">Install laser driver for Leishen ls01d:</h1>
-<ul>
-<li><code>git clone https://github.com/leishen-lidar/LS01D</code> and copy the LS01D directory to your_workspace/src.</li>
-<li>Compile the code: <code>catkin_make</code></li>
-</ul>
-<h1 id="get-laser-data">Get laser data:</h1>
-<ul>
-<li>After building the driver, in your workspace run <code>./devel/lib/talker/talker</code> and the laser data will be published in /scan topic.</li>
-<li>You can use <code>ros echo /scan</code> to read the data.</li>
-</ul>
-<h1 id="show-in-your-host-using-rviz">Show in your host using RViz:</h1>
-<ul>
-<li>In the Pynq, run:<pre><code class="lang-shell">export ROS_MASTER_URI=http://192.168.5.108:11311
-export ROS_HOSTNAME=192.168.5.108
+                                <h1 id="guide-for-developer">Guide For Developer</h1>
+<p>Show you the detail of HydraMini in Host-Part including preprocess, model structure, what is DPU and graph_input_fn detail.</p>
+<h1 id="preprocess-edit">Preprocess Edit</h1>
+<p>Read the file <code>process_img.py</code> and what you need to edit is the function <code>image_handle()</code>, you can do anything you want to the images in the function. Now the function is:</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">image_handle</span><span class="hljs-params">(img)</span>:</span>
+    <span class="hljs-keyword">return</span> (img[CUT_SIZE:,:])/<span class="hljs-number">255.0</span><span class="hljs-number">-0.5</span>
 </code></pre>
-<strong>The URI and HOSTNAME should be yours.</strong></li>
-<li>In your host, run:<pre><code class="lang-shell">export ROS_MASTER_URI=http://192.168.5.108:11311
-export ROS_HOSTNAME=192.168.5.100
-</code></pre>
-<strong>The URI should be the same as Pynq and HOSTNAME should be yours. If your Pynq use some other URI rules, please add that to <code>/etc/hosts</code>.</strong></li>
-<li>Start the laser publisher and in your Pynq, run <code>rviz -f laser_link</code>.</li>
-<li>In RViz, choose <code>Add</code> button and add <code>/scan</code>.
-<img src="rviz_add_scan.png" alt="Add the topic"></li>
-<li>Now you can see the laser data in RViz.
-<img src="laser.png" alt="Laser Data"></li>
-</ul>
+<p><code>img[CUT_SIZE:,:]</code>returns a image without CUT_SIZE header lines. <code>/255.0-0.5</code> makes the image RGB values range from -0.5-0.5.</p>
+<h1 id="network-structure">Network Structure</h1>
+<p>The following picture shows the network structure now.
+<img src="ns.png" alt="network"></p>
+<ol>
+<li>You can define your own network structure in <code>build_model()</code> and your own compiling features in <code>train_model()</code>. Also all the variables in it can be set as you wish but I recommend you read the code carefully and think twice before you edit. </li>
+<li>If you want to do some changes to labels, you should edit <code>batch_generator()</code>. Now the labels in <code>train.csv</code> are the car&apos;s steer and throttle values. They both range from -1.0-1.0, before we put them into the model, we change them to 0.0-1.0 by <code>(value + 1)/2</code>.</li>
+</ol>
+<h2 id="what-is-dpu">What is DPU</h2>
+<p>The Xilinx&#xAE; Deep Learning Processor Unit (DPU) is a programmable engine optimized for convolutional
+neural networks. The unit includes a high performance scheduler module, a hybrid computing array
+module, an instruction fetch unit module, and a global memory pool module. The DPU uses a
+specialized instruction set, which allows for the efficient implementation of many convolutional neural
+networks.</p>
+<h1 id="graphinputfnpy"><code>graph_input_fn.py</code></h1>
+<p>This file is used to generate input data for quantization process. It reads data from the preprocessed image data in <code>training_data_npz</code> directory.</p>
 
                                 
                                 </section>
@@ -360,10 +342,14 @@ export ROS_HOSTNAME=192.168.5.100
 
             
                 
-                <a href="../virtual-guide/custom_simulator.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Custom Simulator">
+                <a href="quantize_compile.html" class="navigation navigation-prev " aria-label="Previous page: Quantize & Compile">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="../virtual-guide/" class="navigation navigation-next " aria-label="Next page: Play">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -372,7 +358,7 @@ export ROS_HOSTNAME=192.168.5.100
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ROS","level":"5.1","depth":1,"previous":{"title":"Custom Simulator","level":"4.2","depth":1,"path":"docs/virtual-guide/custom_simulator.md","ref":"docs/virtual-guide/custom_simulator.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/more-study/ros.md","mtime":"2020-02-17T12:33:33.535Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T12:37:08.379Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"For Developer","level":"3.3","depth":1,"next":{"title":"Play","level":"4.1","depth":1,"path":"docs/virtual-guide/README.md","ref":"docs/virtual-guide/README.md","articles":[]},"previous":{"title":"Quantize & Compile","level":"3.2","depth":1,"path":"docs/host-guide/quantize_compile.md","ref":"docs/host-guide/quantize_compile.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/host-guide/developer_guide_host.md","mtime":"2020-02-17T12:32:30.403Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T12:37:08.379Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

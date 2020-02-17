@@ -3,8 +3,8 @@
  * @GitHub: wutianze
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-10-28 15:12:00
- * @LastEditors: Sauron Wu
- * @LastEditTime: 2019-10-31 14:54:59
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-02-17 20:33:33
  * @Description: 
  -->
 # ROS install in Pynq:
