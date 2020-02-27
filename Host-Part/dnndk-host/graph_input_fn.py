@@ -14,11 +14,9 @@ import glob
 CONV_INPUT = "conv2d_1_input"
 calib_batch_size = 50
 def calib_input(iter):
-    training_data = glob.glob("../training_data_npz/*.npz")
+    training_data = glob.glob("../images/*.jpg")
     images = []
-    with np.load(training_data[iter%len(training_data)]) as data:
-        img_num_in_npz = len(data['train_imgs'])
-        for index in range(0, calib_batch_size):
-            images.append(data['train_imgs'][index%img_num_in_npz])
+    for index in range(0, calib_batch_size):
+        images.append(cv2.imread(training_data[iter+index])/255.0 - 0.5)
     return {CONV_INPUT: images}
 

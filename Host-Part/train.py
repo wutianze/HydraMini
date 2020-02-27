@@ -28,33 +28,22 @@ np.random.seed(0)
 IMAGE_SHAPE = [120,160,3]# will be set autonomously
 global OUTPUT_NUM
 OUTPUT_NUM = 2# need to be set by --output_num
-CHUNK_SIZE = 256
-ORIGINAL_LABEL_NUM = 1# will be set autonomously
+global CUT_SIZE
+CUT_SIZE = 40
+
 # step1,load data
 def load_data(read_path):
-    training_data = glob.glob(read_path + '/*.npz')
-    # match all the files return as list
-    print("Match Completed")
-    print("Total: %d Round"%len(training_data))
-
-    # if no data, exit
-    if not training_data:
-        print("No training data in directory, exit")
-        sys.exit()
-    single_npz = training_data[0]
-    with np.load(single_npz) as data:
-        single_image = data['train_imgs'][0]
-        IMAGE_SHAPE[0] = single_image.shape[0]
+    with open(read_path+"/train.csv") as f:
+        files = list(csv.reader(f))
+        single_image = cv2.imread(read_path+'/'+files[0][0])
+        IMAGE_SHAPE[0] = single_image.shape[0]-CUT_SIZE
         IMAGE_SHAPE[1] = single_image.shape[1]
         IMAGE_SHAPE[2] = single_image.shape[2]
-        global ORIGINAL_LABEL_NUM
-        ORIGINAL_LABEL_NUM = data['train_labels'][0].shape[0]
     print("IMAGE_SHAPE:")
     print(IMAGE_SHAPE)
-    print("ORIGINAL_LABEL_NUM:")
-    print(ORIGINAL_LABEL_NUM)
-    cut = int(len(training_data)*0.8)
-    return training_data[0:cut], training_data[cut:]
+    print("ORIGINAL_LABEL_NUM:%d"%(len(files[0])-1))
+    cut = int(len(files)*0.8)
+    return files[0:cut], files[cut:]
 
 # step2 Build Model
 def build_model(keep_prob,model_path):
@@ -113,46 +102,37 @@ def train_model(model, learning_rate, nb_epoch, samples_per_epoch,
                         epochs = nb_epoch,
                         max_queue_size=1,
                         validation_data=batch_generator(valid_list, batch_size),
-                        validation_steps=(len(valid_list)*CHUNK_SIZE)/batch_size,
+                        validation_steps=len(valid_list)/batch_size,
                         callbacks=[tensorboard, checkpoint, early_stop, reduce_lr],
                         verbose=2)
 
 # step4
 def batch_generator(name_list, batch_size):
-    i = 0
-    while True:
-        # load
-        image_array = np.zeros((1, IMAGE_SHAPE[0], IMAGE_SHAPE[1], IMAGE_SHAPE[2]),'float')
-        label_array = np.zeros((1, ORIGINAL_LABEL_NUM), 'float')
-        # every time read <=10 pack and shuffle
-        for read_num in range(10):
-            single_npz = name_list[random.randint(0,len(name_list)-1)]
-        
-            with np.load(single_npz) as data:
-            #print(data.keys())
-                train_temp = data['train_imgs']
-                train_labels_temp = data['train_labels']
-                image_array = np.vstack((image_array, train_temp)) 
-                label_array = np.vstack((label_array, train_labels_temp))
-        X = image_array[1:, :]
-        y = label_array[1:, :]
-
+    while true:
         images = np.zeros([batch_size, IMAGE_SHAPE[0], IMAGE_SHAPE[1], IMAGE_SHAPE[2]])
         labels = np.zeros([batch_size, OUTPUT_NUM])
         #for index in np.random.permutation(X.shape[0]):
-        for index in np.random.permutation(X.shape[0]):
-            images[i] = X[index]
+        i = 0
+        for index in np.random.permutation(len(name_list)):
+            # this line defines how images are processed, should be same as that in graph_input_fn
+            images[i] = cv2.imread(name_list[index][0])[CUT_SIZE:,:]/255.0-0.5
             if OUTPUT_NUM == 1:
-                labels[i] = [(y[index][0]+1.)/2.]
+                labels[i] = [(name_list[index][1]+1.)/2.]
             elif OUTPUT_NUM ==2:
-                labels[i] = [(y[index][0]+1.)/2.,(y[index][1]+1.)/2.]
+                labels[i] = [(name_list[index][1]+1.)/2.,(name_list[index][2]+1.)/2.]
             #print(labels[i])
             i += 1
             if i == batch_size:
                 i = 0
                 yield (images, labels)
 
-def main(model_path, read_path):
+def main(model_path, read_path,nb_epoch):
+
+    print("Start loading data list from:"+read_path)
+    train_list, valid_list = load_data(read_path)
+    total_number_img = len(train_list) + len(valid_list)
+    print("total images number is:%d"%(total_number_img))
+    print("Load Data list Finished")
 
     print('-'*30)
     print('parameters')
@@ -161,9 +141,8 @@ def main(model_path, read_path):
     keep_prob = 0.1
     # learning_rate must be smaller than 0.0001
     learning_rate = 0.0001
-    nb_epoch = 100
-    samples_per_epoch = 3000
     batch_size = 30
+    samples_per_epoch = total_number_img / batch_size
 
     print('keep_prob = ', keep_prob)
     print('learning_rate = ', learning_rate)
@@ -172,9 +151,6 @@ def main(model_path, read_path):
     print('batch_size = ', batch_size)
     print('-' * 30)
 
-    # Start loading data
-    train_list, valid_list = load_data(read_path)
-    print("Load Data Finished")
 
     # compile the model
     model = build_model(keep_prob,model_path)
@@ -188,9 +164,13 @@ def main(model_path, read_path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='prediction server')
     parser.add_argument('--model', type=str, help='model dir', default="./model")
-    parser.add_argument('--read', type=str, help='npz store dir', default="./training_data_npz")
-    parser.add_argument('--output_num', type=int, help='the output num of the model not the original label num', default=2)
+    parser.add_argument('--read', type=str, help='image dir', default="./images")
+    parser.add_argument('--output_num', type=int, help='the output num of the model not the original label num, now we support 1 or 2', default=2)
+    parser.add_argument('--cut_head_size', type=int, help='top head of the image to cut', default=40)
+    parser.add_argument('--epoch', type=int, help='the number of epoch', default=20)
     args = parser.parse_args()
     OUTPUT_NUM = args.output_num
+    CUT_SIZE = args.cut_head_size
     print("OUTPUT_NUM:%d"%OUTPUT_NUM)
-    main(args.model,args.read)
+    print("CUT_SIZE:%d"%CUT_SIZE)
+    main(args.model,args.read,args.epoch)
