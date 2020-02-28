@@ -4,7 +4,7 @@
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-10-15 16:38:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-02-17 20:33:18
+ * @LastEditTime: 2020-02-28 11:04:23
  * @Description: 
  -->
 # What you will learn
@@ -20,7 +20,7 @@ Transfer the .h5 model to .pb model using `python keras_to_tensorflow.py --input
 ![decent_q inspect](./inspect_pb.png)
 ## Quantization and Compilation
 1. Edit `quant.sh`, change the `--input_nodes conv2d_1_input --input_shapes ?,80,160,3 --output_nodes dense_3/Softmax` according to the info you get from `decent_q inspect` and the model input image size.  
-2. Edit `graph_input_fn.py`, change the `CONV_INPUT` to `--input_nodes` in `quant.sh` and set the read path of glob to the result of `process_img`.
+2. Edit `graph_input_fn.py`, change the `CONV_INPUT` to `--input_nodes` in `quant.sh` and set the read path of glob to the copied images directory(default in `Host-Part`). The `CUT_SIZE` should be same as the parameter for `train.py`. 
 3. Edit `compile.sh`, make a name for your model by changing `--net_name`.
 4. Run `./quant.sh && compile.sh`, it will do quantization to the trained model and build .elf files which can be used by DPU. You can see the info printed in your screen if nothing goes wrong. You must remember the info printed and they will be used later in Pynq-Part. 
 ![quant](./quant.png)

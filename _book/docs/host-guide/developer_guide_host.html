@@ -292,12 +292,19 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="guide-for-developer">Guide For Developer</h1>
+                                <!--
+ * @Author: your name
+ * @Date: 2020-02-17 19:26:36
+ * @LastEditTime: 2020-02-28 11:07:48
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /HydraMini/docs/host-guide/developer_guide_host.md
+ -->
+<h1 id="guide-for-developer">Guide For Developer</h1>
 <p>Show you the detail of HydraMini in Host-Part including preprocess, model structure, what is DPU and graph_input_fn detail.</p>
 <h1 id="preprocess-edit">Preprocess Edit</h1>
-<p>Read the file <code>process_img.py</code> and what you need to edit is the function <code>image_handle()</code>, you can do anything you want to the images in the function. Now the function is:</p>
-<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">image_handle</span><span class="hljs-params">(img)</span>:</span>
-    <span class="hljs-keyword">return</span> (img[CUT_SIZE:,:])/<span class="hljs-number">255.0</span><span class="hljs-number">-0.5</span>
+<p>Read the file <code>train.py</code> and what you need to edit is the function <code>batch_generator()</code>, you can do anything you want to the images in the function. Now the preprocess method is:</p>
+<pre><code class="lang-python">img[CUT_SIZE:,:]/<span class="hljs-number">255.0</span><span class="hljs-number">-0.5</span>
 </code></pre>
 <p><code>img[CUT_SIZE:,:]</code>returns a image without CUT_SIZE header lines. <code>/255.0-0.5</code> makes the image RGB values range from -0.5-0.5.</p>
 <h1 id="network-structure">Network Structure</h1>
@@ -314,7 +321,7 @@ module, an instruction fetch unit module, and a global memory pool module. The D
 specialized instruction set, which allows for the efficient implementation of many convolutional neural
 networks.</p>
 <h1 id="graphinputfnpy"><code>graph_input_fn.py</code></h1>
-<p>This file is used to generate input data for quantization process. It reads data from the preprocessed image data in <code>training_data_npz</code> directory.</p>
+<p>This file is used to generate input data for quantization process. It reads data from the <code>images</code> directory. Remember to do the preprocess in <code>graph_input_fn</code> the same as <code>tran.py/batch_generator()</code>.</p>
 
                                 
                                 </section>
@@ -358,7 +365,7 @@ networks.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"For Developer","level":"3.3","depth":1,"next":{"title":"Play","level":"4.1","depth":1,"path":"docs/virtual-guide/README.md","ref":"docs/virtual-guide/README.md","articles":[]},"previous":{"title":"Quantize & Compile","level":"3.2","depth":1,"path":"docs/host-guide/quantize_compile.md","ref":"docs/host-guide/quantize_compile.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/host-guide/developer_guide_host.md","mtime":"2020-02-17T12:32:30.403Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T12:37:08.379Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"For Developer","level":"3.3","depth":1,"next":{"title":"Play","level":"4.1","depth":1,"path":"docs/virtual-guide/README.md","ref":"docs/virtual-guide/README.md","articles":[]},"previous":{"title":"Quantize & Compile","level":"3.2","depth":1,"path":"docs/host-guide/quantize_compile.md","ref":"docs/host-guide/quantize_compile.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/host-guide/developer_guide_host.md","mtime":"2020-02-28T03:07:48.491Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-28T03:08:32.176Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

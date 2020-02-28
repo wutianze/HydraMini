@@ -3,18 +3,20 @@
 @GitHub: wutianze
 @Email: 1369130123qq@gmail.com
 @Date: 2019-09-20 14:23:08
-@LastEditors  : Please set LastEditors
-@LastEditTime : 2020-01-19 10:57:07
+@LastEditors: Please set LastEditors
+@LastEditTime: 2020-02-28 10:42:31
 @Description: 
 '''
 import keras
-import tensorflow
+#import tensorflow
 import sys
 import os
 import h5py
 import numpy as np
 import glob
 import random
+import csv
+import cv2
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Lambda, Conv2D, MaxPooling2D, Dropout, Dense, Flatten, Cropping2D,BatchNormalization
@@ -24,18 +26,21 @@ from keras.optimizers import Adam, SGD
 from keras.utils import plot_model
 import argparse
 
+#os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 np.random.seed(0)
 IMAGE_SHAPE = [120,160,3]# will be set autonomously
 global OUTPUT_NUM
 OUTPUT_NUM = 2# need to be set by --output_num
 global CUT_SIZE
 CUT_SIZE = 40
+global READ_PATH
+READ_PATH ="./images"
 
 # step1,load data
-def load_data(read_path):
-    with open(read_path+"/train.csv") as f:
+def load_data():
+    with open(READ_PATH+"/train.csv") as f:
         files = list(csv.reader(f))
-        single_image = cv2.imread(read_path+'/'+files[0][0])
+        single_image = cv2.imread(READ_PATH+'/'+files[0][0])
         IMAGE_SHAPE[0] = single_image.shape[0]-CUT_SIZE
         IMAGE_SHAPE[1] = single_image.shape[1]
         IMAGE_SHAPE[2] = single_image.shape[2]
@@ -108,28 +113,30 @@ def train_model(model, learning_rate, nb_epoch, samples_per_epoch,
 
 # step4
 def batch_generator(name_list, batch_size):
-    while true:
+    while True:
         images = np.zeros([batch_size, IMAGE_SHAPE[0], IMAGE_SHAPE[1], IMAGE_SHAPE[2]])
         labels = np.zeros([batch_size, OUTPUT_NUM])
         #for index in np.random.permutation(X.shape[0]):
         i = 0
         for index in np.random.permutation(len(name_list)):
             # this line defines how images are processed, should be same as that in graph_input_fn
-            images[i] = cv2.imread(name_list[index][0])[CUT_SIZE:,:]/255.0-0.5
+            #print(READ_PATH+'/'+name_list[index][0])
+            images[i] = cv2.imread(READ_PATH+'/'+name_list[index][0])[CUT_SIZE:,:]/255.0-0.5
             if OUTPUT_NUM == 1:
                 labels[i] = [(name_list[index][1]+1.)/2.]
             elif OUTPUT_NUM ==2:
-                labels[i] = [(name_list[index][1]+1.)/2.,(name_list[index][2]+1.)/2.]
+                labels[i] = [(float(name_list[index][1])+1.)/2.,(float(name_list[index][2])+1.)/2.]
+            #print(name_list[index][2])
             #print(labels[i])
             i += 1
             if i == batch_size:
                 i = 0
                 yield (images, labels)
 
-def main(model_path, read_path,nb_epoch):
+def main(model_path,nb_epoch):
 
-    print("Start loading data list from:"+read_path)
-    train_list, valid_list = load_data(read_path)
+    print("Start loading data list from:"+READ_PATH)
+    train_list, valid_list = load_data()
     total_number_img = len(train_list) + len(valid_list)
     print("total images number is:%d"%(total_number_img))
     print("Load Data list Finished")
@@ -142,7 +149,7 @@ def main(model_path, read_path,nb_epoch):
     # learning_rate must be smaller than 0.0001
     learning_rate = 0.0001
     batch_size = 30
-    samples_per_epoch = total_number_img / batch_size
+    samples_per_epoch = int(total_number_img / batch_size)
 
     print('keep_prob = ', keep_prob)
     print('learning_rate = ', learning_rate)
@@ -171,6 +178,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     OUTPUT_NUM = args.output_num
     CUT_SIZE = args.cut_head_size
+    READ_PATH = args.read
     print("OUTPUT_NUM:%d"%OUTPUT_NUM)
     print("CUT_SIZE:%d"%CUT_SIZE)
-    main(args.model,args.read,args.epoch)
+    main(args.model,args.epoch)

@@ -1,11 +1,18 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-02-17 19:26:36
+ * @LastEditTime: 2020-02-28 11:07:48
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /HydraMini/docs/host-guide/developer_guide_host.md
+ -->
 # Guide For Developer
 Show you the detail of HydraMini in Host-Part including preprocess, model structure, what is DPU and graph_input_fn detail.
 
 # Preprocess Edit
-Read the file `process_img.py` and what you need to edit is the function `image_handle()`, you can do anything you want to the images in the function. Now the function is:
+Read the file `train.py` and what you need to edit is the function `batch_generator()`, you can do anything you want to the images in the function. Now the preprocess method is:
 ```python
-def image_handle(img):
-    return (img[CUT_SIZE:,:])/255.0-0.5
+img[CUT_SIZE:,:]/255.0-0.5
 ```
 `img[CUT_SIZE:,:]`returns a image without CUT_SIZE header lines. `/255.0-0.5` makes the image RGB values range from -0.5-0.5.
 
@@ -23,4 +30,4 @@ specialized instruction set, which allows for the efficient implementation of ma
 networks.
 
 # `graph_input_fn.py`
-This file is used to generate input data for quantization process. It reads data from the preprocessed image data in `training_data_npz` directory.
+This file is used to generate input data for quantization process. It reads data from the `images` directory. Remember to do the preprocess in `graph_input_fn` the same as `tran.py/batch_generator()`.

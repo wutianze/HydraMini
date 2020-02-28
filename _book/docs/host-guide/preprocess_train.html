@@ -298,7 +298,7 @@
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-10-15 15:51:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-02-17 20:32:44
+ * @LastEditTime: 2020-02-28 11:05:18
  * @Description: 
  -->
 <h1 id="what-you-will-learn">What you will learn</h1>
@@ -306,28 +306,20 @@
 <li>Image preprocess.</li>
 <li>Train the AI model using keras.</li>
 </ul>
-<h1 id="handle-images">Handle images</h1>
-<h2 id="why-we-need-preprocess">Why we need preprocess?</h2>
+<h1 id="why-we-need-preprocess">Why we need preprocess?</h1>
 <ol>
-<li>The initial images may not meet the requirements of the model input, for example, the image size is 1020*720 while the input size is 160*120.</li>
-<li>The model&apos;s performance highly depends on the input quality and there exists many ways to make the images more suitable for training such as normalization.<h2 id="steps">Steps</h2>
-</li>
-<li>First copy the images your generated(using the images from the car&apos;s collect function or from the simulator or from anywhere) to the <code>/home/xilinx/HydraMini/Host-Part/images</code> directory.</li>
-<li>Run <code>python process_img.py --path=./images --store=./training_data_npz --method=1 --cut_head_size=40</code>, process_img reads images from path and store the result in store. <code>path</code> refers to the initial image directory, <code>store</code> refers to the directory to store result, <code>method</code> provides a way to ignore some images(usually we set <code>method=1</code> to do nothing), <code>cut_head_size</code> means how many pixels to cut, for example, if <code>cut_head_size=40</code>, the inital image size is 160*120, then the result image size is 160*80, <code>cut_head_size</code> is used to delete some useless information.
-<img src="process_img.png" alt="process img"></li>
+<li>The initial images may not meet the requirements of the model input, for example, the image size is 1020*720 while the input size is 160*120. However, in HydraMini, since the images are collected by the car, we won&apos;t change the image size in preprocess part.</li>
+<li>The model&apos;s performance highly depends on the input quality and there exists many ways to make the images more suitable for training such as normalization.</li>
 </ol>
 <h1 id="train-the-model">Train the model</h1>
 <h2 id="steps">Steps</h2>
 <ol>
-<li>Run <code>python train.py --model=./model --read=./training_data_npz --output_num=2</code>, it will use the processed images from process_img&apos;s result and store the trained model in model directory. You can also set the output number of the model by <code>--output_num=</code>(for ex.1 for steer only and 2 for steer&amp;speed). 
-<strong><em>Tip:The input size of the model is defined by the result of <code>process_img</code>, The output size of the model is defined by <code>--output_num</code></em></strong>
+<li>First copy the images your generated(using the images from the car&apos;s collect function or from the simulator or from anywhere) to the <code>/home/xilinx/HydraMini/Host-Part/images</code> directory. Make sure the image size is what you want.</li>
+<li>Run <code>python train.py --model=./model --read=./training_data_npz --output_num=2 --cut_head_size=40 --epoch=20</code>, it will use the processed images(in data generator function <code>batch_generator()</code>) and store the trained model in model directory. <code>cut_head_size</code> means how many pixels to cut, for example, if <code>cut_head_size=40</code>, the inital image size is 160*120, then the result image size is 160*80, <code>cut_head_size</code> is used to delete some useless information. You can also set the output number of the model by <code>--output_num=</code>(for ex.1 for steer only and 2 for steer&amp;speed). <code>epoch</code> is the same in keras.
 <img src="train.png" alt="train"></li>
 </ol>
 <h1 id="summary">Summary</h1>
-<ul>
-<li>The above process can be run in one command: Run <code>./process_train.sh</code>, it will use default parameters. </li>
-<li>Now, you have trained an AI model which inputs images and output control values. Next, if you want to run and accelerate the model in pynq, you will use DNNDK provided by xilinx to compile the .h5 model to .elf file.</li>
-</ul>
+<p>Now, you have trained an AI model which inputs images and output control values. Next, if you want to run and accelerate the model in pynq, you will use DNNDK provided by xilinx to compile the .h5 model to .elf file.</p>
 
                                 
                                 </section>
@@ -371,7 +363,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Preprocess & Train","level":"3.1","depth":1,"next":{"title":"Quantize & Compile","level":"3.2","depth":1,"path":"docs/host-guide/quantize_compile.md","ref":"docs/host-guide/quantize_compile.md","articles":[]},"previous":{"title":"For Developer","level":"2.3","depth":1,"path":"docs/pynq-guide/developer_guide_pynq.md","ref":"docs/pynq-guide/developer_guide_pynq.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/host-guide/preprocess_train.md","mtime":"2020-02-17T12:33:06.527Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-17T12:37:08.379Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Preprocess & Train","level":"3.1","depth":1,"next":{"title":"Quantize & Compile","level":"3.2","depth":1,"path":"docs/host-guide/quantize_compile.md","ref":"docs/host-guide/quantize_compile.md","articles":[]},"previous":{"title":"For Developer","level":"2.3","depth":1,"path":"docs/pynq-guide/developer_guide_pynq.md","ref":"docs/pynq-guide/developer_guide_pynq.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Sauron Wu","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"HydraMini Guide","gitbook":"*","description":"The guide of HydraMini, an affordable platform for autonomous driving research and education"},"file":{"path":"docs/host-guide/preprocess_train.md","mtime":"2020-02-28T03:05:18.465Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-28T03:08:32.176Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
