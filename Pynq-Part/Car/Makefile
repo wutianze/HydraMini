@@ -16,13 +16,13 @@ ARCH    =     $(shell uname -m | sed -e s/arm.*/armv71/ \
 CXX       :=   g++
 CC        :=   gcc 
 COLLECTOBJ :=   collect.o control.o
-RUNOBJ    :=   run.o control.o
+RUNOBJ    :=   run.o control.o net_decode.o
 FPTOBJ    := control.o cv_lane.o runYolo.o run_fpt.o
 # linking libraries of OpenCV
 COLLECTLDFLAGS   =   $(shell pkg-config --libs opencv) -lpthread
 RUNLDFLAGS  =  $(COLLECTLDFLAGS) -lhineon -ln2cube -ldputils
 
-CFLAGS  :=  -O2 -Wall -Wpointer-arith -std=c++11 -ffast-math
+CFLAGS  :=  -O2 -Wall -Wpointer-arith -std=c++11 -ffast-math -I/home/xilinx/Car/include
 
 ifeq ($(ARCH),armv71)
 	CFLAGS +=  -mcpu=cortex-a9 -mfloat-abi=hard -mfpu=neon

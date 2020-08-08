@@ -29,9 +29,9 @@
 ```shell
 cd ~/Car
 make run
-./build/run n 0.5 # Usage of this exe: ./car c/n 0.5(run speed)
+./build/run n 0.5 # Usage of this exe: ./car c/n/s 0.5(run speed)
 ```
-The first parameter means the run mode, `n` for only using neural network, `c` for using both neural network and computer vision functions. The second parameter is used unless the model outputs throttle value directly.
+The first parameter means the run mode, `n` for only using neural network, `c` for using both neural network and computer vision functions, s for using neural network and building a web server. The second parameter is used if you want to run in a fixed speed.
 
 # References
 [libn2cube API](https://www.xilinx.com/support/documentation/sw_manuals/ai_inference/v1_5/ug1327-dnndk-user-guide.pdf)

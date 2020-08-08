@@ -420,7 +420,7 @@ void run_model(DPUTask* task){
 #define STRAIGHT_RIGHT_K 1.1
 #define L_TOO_LEFT 85
 #define K_RANGE 0.2
-void run_cv(){
+void run_lane_detect(){
     cout<<"Run CV\n";
     Mat tmpImage;
     CvSize frame_size = cvSize(LANE_DET_WIDTH, LANE_DET_HEIGHT/2);
@@ -556,7 +556,7 @@ int main(int argc, char **argv)
     vector<thread> threads;
     threads.push_back(thread(run_command));
     threads.push_back(thread(run_camera));
-    threads.push_back(thread(run_cv));
+    threads.push_back(thread(run_lane_detect));
  
     /*
     for(int i=0;i<TASKNUM;i++){

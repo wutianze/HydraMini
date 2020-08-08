@@ -3,8 +3,8 @@
 @GitHub: wutianze
 @Email: 1369130123qq@gmail.com
 @Date: 2019-09-20 14:23:08
-@LastEditors: Please set LastEditors
-@LastEditTime: 2020-02-28 10:42:31
+@LastEditors: Sauron Wu
+@LastEditTime: 2020-02-29 22:50:30
 @Description: 
 '''
 import keras
@@ -100,7 +100,7 @@ def train_model(model, learning_rate, nb_epoch, samples_per_epoch,
 
     
     #model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(lr=learning_rate), metrics=['accuracy'])
-    model.compile(optimizer=keras.optimizers.Adam(lr=learning_rate),loss='mean_squared_error') # for congression model
+    model.compile(optimizer=keras.optimizers.Adam(lr=learning_rate),loss='mean_squared_error') # for regression model
     
     model.fit_generator(batch_generator(train_list, batch_size),
                         steps_per_epoch=samples_per_epoch/batch_size,
@@ -123,7 +123,7 @@ def batch_generator(name_list, batch_size):
             #print(READ_PATH+'/'+name_list[index][0])
             images[i] = cv2.imread(READ_PATH+'/'+name_list[index][0])[CUT_SIZE:,:]/255.0-0.5
             if OUTPUT_NUM == 1:
-                labels[i] = [(name_list[index][1]+1.)/2.]
+                labels[i] = (float(name_list[index][1])+1.)/2.
             elif OUTPUT_NUM ==2:
                 labels[i] = [(float(name_list[index][1])+1.)/2.,(float(name_list[index][2])+1.)/2.]
             #print(name_list[index][2])

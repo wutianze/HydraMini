@@ -22,20 +22,32 @@
 #include <ctime>
 #include <fstream>
 #include <sstream>
-#include "safe_queue.h"
 #include <mutex>
-#include <string>
-#include <vector>
 #include <thread>
-#include "control.h"
 #include<csignal>
+#include<stdio.h>
+#include<stdlib.h>
+#include<errno.h>
+#include<sys/types.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<unistd.h>
+#include "safe_queue.h"
+#include "control.h"
+#include "net_decode.h"
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+//#include "httplib.h"
 using namespace cv;
 using namespace std;
 using namespace std::chrono;
+using namespace rapidjson;
 
 //whether to use opencv, set by user
 string mode;
 
+#define MAXLINE 16384
 #define NNCONTROL 0
 #define CVCONTROL 1
 // commander indicates the car is controlled by AI or opencv currently
@@ -53,10 +65,11 @@ struct steer_throttle{
     float throttle;
 };
 safe_queue<steer_throttle> generatedSteer_Throttles;
-safe_queue<float> generatedSteers;
 //vector<string> kinds = {"left", "forward", "right"};
-//vector<string> kinds = {"steer"};
-float runSpeed;
+vector<string> kinds = {"steer","throttle"};
+float runSpeed = -1;
+int client;
+
 #define KERNEL_CONV "testModel"
 #define CONV_INPUT_NODE "conv2d_1_convolution"
 #define CONV_OUTPUT_NODE "dense_3_MatMul"
@@ -147,26 +160,6 @@ void addSteer_Throttle(steer_throttle tmpC){
     }
 }
 
-void addSteer(float com){
-    timeLock.lock();
-    clock_t now = clock();
-    if(now < timeSet){
-        timeLock.unlock();
-        return;
-    }else{
-    	//cout<<"FPS:"<<CLOCKS_PER_SEC/float(now-timeSet)<<endl;
-        timeSet = now;
-    }
-    timeLock.unlock();
-    int nowSize = generatedSteers.size();
-    if( nowSize >= COMMANDMAXLEN){
-        if(generatedSteers.try_pop())generatedSteers.push(com);
-        return;
-    }else{
-        generatedSteers.push(com);
-    }
-}
-
 void run_model(DPUTask* task){
     cout<<"Run Model\n";
     int channel = kinds.size();
@@ -209,10 +202,13 @@ void run_model(DPUTask* task){
 
     steer_throttle tmpC;
     tmpC.steer = changeV;
-    tmpC.throttle = throttle;
+    if(runSpeed < 0){
+        tmpC.throttle = throttle;
+    }else{
+        tmpC.throttle = runSpeed;
+    }
 
     addSteer_Throttle(tmpC);
-	//addSteer(changeV);
     //addCommand(topKind(smRes.data(), channel));        
     }
     exitLock.unlock();
@@ -225,7 +221,6 @@ int cv_al1(Mat image){
 
 void run_cv(){
     cout<<"Run CV\n";
-    if(mode[0] == 'n')return;
     Mat tmpImage;
     while(true){
     	exitLock.lock();
@@ -313,51 +308,127 @@ void run_steer(){
 	else{
 	exitLock.unlock();
 	}
-        float tmpS;
-        if(!generatedSteers.try_pop(tmpS))continue;
-    		controller.steerSet(tmpS);
+        steer_throttle tmpS;
+        if(!generatedSteer_Throttles.try_pop(tmpS))continue;
+    		controller.steerSet(tmpS.steer);
     }
     exitLock.unlock();
     cout<<"Run Steer Exit\n";
     }
 
+void run_server(){
+	int  listenfd, connfd;
+    struct sockaddr_in  servaddr;
+    char  buff[MAXLINE+1];
+    int  n;
+
+    if( (listenfd = socket(AF_INET, SOCK_STREAM, 0)) == -1 ){
+        printf("create socket error: %s(errno: %d)\n",strerror(errno),errno);
+        return;
+    }
+
+    memset(&servaddr, 0, sizeof(servaddr));
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    servaddr.sin_port = htons(9000);
+
+    if( bind(listenfd, (struct sockaddr*)&servaddr, sizeof(servaddr)) == -1){
+        printf("bind socket error: %s(errno: %d)\n",strerror(errno),errno);
+        return;
+    }
+
+    if( listen(listenfd, 10) == -1){
+        printf("listen socket error: %s(errno: %d)\n",strerror(errno),errno);
+        return;
+    }
+
+    printf("======waiting for client's request======\n");
+while((connfd = accept(listenfd, (struct sockaddr*)NULL, NULL)) == -1){
+            //printf("accept socket error: %s(errno: %d)",strerror(errno),errno);
+        }
+int test_time = 1;
+string buff_store;
+Document d;    
+while(true){
+	    if(test_time >3)return;
+	exitLock.lock();
+	if(EXIT){
+		break;
+	}
+	else{
+	exitLock.unlock();
+	}
+
+        n = recv(connfd, buff, MAXLINE, 0);
+        cout<<"recv n:"<<n<<endl;
+	buff[n] = '\0';
+        string tmp_str(buff);
+	//cout<<"recv initial:"<<tmp_str;
+	buff_store+=tmp_str;
+	int split_place = buff_store.find('\n');
+	
+	if(split_place == -1){
+	continue;
+	}else{
+	d.Parse((buff_store.substr(0,split_place)).c_str());
+	//cout<<d["msg_type"].GetString()<<endl;
+	buff_store = buff_store.substr(split_place+1);
+	}
+	test_time++;
+	if(test_time == 2)continue;
+	string image_str = d["image"].GetString();
+	Mat rec_img = Base2Mat(image_str);
+	imwrite("rec_img.png",rec_img);
+	//string to_send = "{\"msg_type\":\"pynq_speed\",\"steering\":\"0.0\",\"speed\":\"1.0\"}\n";
+
+        //if(send(connfd,to_send.c_str(),to_send.size(),0)==-1){
+        //printf("send wrong");
+       // }
+                }
+        close(connfd);
+    close(listenfd);
+    return;
+   
+}
 
 int main(int argc, char **argv)
 {
-     if (argc != 3) {
-        cout << "Usage of this exe: ./car c/n 0.5(run speed)"<< endl;
+     if (argc < 2) {
+        cout << "Usage of this exe: ./car c/n/s 0.5(run speed)"<< endl;
         return -1;
       }
 
     signal(SIGTSTP,sig_handler);
-    // n means just use ml, c means use ml & cv.
+    // n means just use ml, c means use ml & cv, s means use ml and build server
     mode = argv[1];
-    runSpeed = atof(argv[2]);
-    /* The main procress of using DPU kernel begin. */
-    DPUKernel *kernelConv;
+    if(argc >2)runSpeed = atof(argv[2]);
 
-    dpuOpen();
-    kernelConv = dpuLoadKernel(KERNEL_CONV);
-    vector<DPUTask*> tasks(TASKNUM);
-    generate(tasks.begin(),tasks.end(),std::bind(dpuCreateTask,kernelConv,0));    
+    /* The main procress of using DPU kernel begin. */
+    //DPUKernel *kernelConv;
+
+    //dpuOpen();
+    //kernelConv = dpuLoadKernel(KERNEL_CONV);
+    //vector<DPUTask*> tasks(TASKNUM);
+    //generate(tasks.begin(),tasks.end(),std::bind(dpuCreateTask,kernelConv,0));    
     vector<thread> threads;
     for(int i=0;i<TASKNUM;i++){
-    	threads.push_back(thread(run_model,tasks[i]));
+    	//threads.push_back(thread(run_model,tasks[i]));
     }
-    threads.push_back(thread(run_steer_throttle));
+    //threads.push_back(thread(run_steer_throttle));
     //threads.push_back(thread(run_steer));
-    threads.push_back(thread(run_camera));
+    //threads.push_back(thread(run_camera));
     if(mode[0]=='c'){
     threads.push_back(thread(run_cv));
     }
+    if(mode[0]=='s')threads.push_back(thread(run_server));
     for(int i = 0; i < threads.size(); i++){
         threads[i].join();
         cout<<"one exit:"<<i<<endl;
     }
 
-    for_each(tasks.begin(),tasks.end(),dpuDestroyTask);
+    //for_each(tasks.begin(),tasks.end(),dpuDestroyTask);
 
-    dpuDestroyKernel(kernelConv);
-    dpuClose();
+    //dpuDestroyKernel(kernelConv);
+    //dpuClose();
     return 0;
 }
