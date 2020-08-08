@@ -68,7 +68,9 @@ safe_queue<steer_throttle> generatedSteer_Throttles;
 //vector<string> kinds = {"left", "forward", "right"};
 vector<string> kinds = {"steer","throttle"};
 float runSpeed = -1;
-int client;
+
+// for socket connection
+int  listenfd, connfd;
 
 #define KERNEL_CONV "testModel"
 #define CONV_INPUT_NODE "conv2d_1_convolution"
@@ -316,41 +318,12 @@ void run_steer(){
     cout<<"Run Steer Exit\n";
     }
 
-void run_server(){
-	int  listenfd, connfd;
-    struct sockaddr_in  servaddr;
-    char  buff[MAXLINE+1];
+void run_net_receiver(){
+	char  buff[MAXLINE+1];
     int  n;
-
-    if( (listenfd = socket(AF_INET, SOCK_STREAM, 0)) == -1 ){
-        printf("create socket error: %s(errno: %d)\n",strerror(errno),errno);
-        return;
-    }
-
-    memset(&servaddr, 0, sizeof(servaddr));
-    servaddr.sin_family = AF_INET;
-    servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    servaddr.sin_port = htons(9000);
-
-    if( bind(listenfd, (struct sockaddr*)&servaddr, sizeof(servaddr)) == -1){
-        printf("bind socket error: %s(errno: %d)\n",strerror(errno),errno);
-        return;
-    }
-
-    if( listen(listenfd, 10) == -1){
-        printf("listen socket error: %s(errno: %d)\n",strerror(errno),errno);
-        return;
-    }
-
-    printf("======waiting for client's request======\n");
-while((connfd = accept(listenfd, (struct sockaddr*)NULL, NULL)) == -1){
-            //printf("accept socket error: %s(errno: %d)",strerror(errno),errno);
-        }
-int test_time = 1;
 string buff_store;
 Document d;    
 while(true){
-	    if(test_time >3)return;
 	exitLock.lock();
 	if(EXIT){
 		break;
@@ -360,10 +333,8 @@ while(true){
 	}
 
         n = recv(connfd, buff, MAXLINE, 0);
-        cout<<"recv n:"<<n<<endl;
 	buff[n] = '\0';
         string tmp_str(buff);
-	//cout<<"recv initial:"<<tmp_str;
 	buff_store+=tmp_str;
 	int split_place = buff_store.find('\n');
 	
@@ -371,26 +342,56 @@ while(true){
 	continue;
 	}else{
 	d.Parse((buff_store.substr(0,split_place)).c_str());
-	//cout<<d["msg_type"].GetString()<<endl;
 	buff_store = buff_store.substr(split_place+1);
 	}
-	test_time++;
-	if(test_time == 2)continue;
 	string image_str = d["image"].GetString();
-	Mat rec_img = Base2Mat(image_str);
-	imwrite("rec_img.png",rec_img);
+	Mat image = Base2Mat(image_str);
+    Mat resizeImage;
+    resize(image,resizeImage,Size(STORESIZE_WIDTH,STORESIZE_HEIGHT));
+        int nowSize = takenImages.size();
+        if(nowSize >= IMAGEMAXLEN){
+            if(takenImages.try_pop())takenImages.push(resizeImage.rowRange(CUT_SIZE,resizeImage.rows).clone());
+        }else{
+            takenImages.push(resizeImage.rowRange(CUT_SIZE,resizeImage.rows).clone());
+        }
 	//string to_send = "{\"msg_type\":\"pynq_speed\",\"steering\":\"0.0\",\"speed\":\"1.0\"}\n";
 
         //if(send(connfd,to_send.c_str(),to_send.size(),0)==-1){
         //printf("send wrong");
        // }
                 }
-        close(connfd);
-    close(listenfd);
+                exitLock.unlock();
+        
     return;
    
 }
+void run_net_sender(){
+	char  buff[MAXLINE+1];
+    int  n;
+string buff_store;
+Document d;    
+while(true){
+	exitLock.lock();
+	if(EXIT){
+		break;
+	}
+	else{
+	exitLock.unlock();
+	}
+steer_throttle tmpS;
+        if(!generatedSteer_Throttles.try_pop(tmpS))continue;
 
+	string to_send = "{\"msg_type\":\"pynq_speed\",\"steering\":\""+to_string(tmpS.steer)+"\",\"speed\":\""+to_string(tmpS.throttle)+"\"}\n";
+
+        if(send(connfd,to_send.c_str(),to_send.size(),0)==-1){
+        cout<<"send wrong\n";
+        }
+                }
+                exitLock.unlock();
+        
+    return;
+   
+}
 int main(int argc, char **argv)
 {
      if (argc < 2) {
@@ -420,12 +421,44 @@ int main(int argc, char **argv)
     if(mode[0]=='c'){
     threads.push_back(thread(run_cv));
     }
-    if(mode[0]=='s')threads.push_back(thread(run_server));
+    if(mode[0]=='s'){
+        struct sockaddr_in  servaddr;
+    if( (listenfd = socket(AF_INET, SOCK_STREAM, 0)) == -1 ){
+        printf("create socket error: %s(errno: %d)\n",strerror(errno),errno);
+        return;
+    }
+
+    memset(&servaddr, 0, sizeof(servaddr));
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    servaddr.sin_port = htons(9000);
+
+    if( bind(listenfd, (struct sockaddr*)&servaddr, sizeof(servaddr)) == -1){
+        printf("bind socket error: %s(errno: %d)\n",strerror(errno),errno);
+        return;
+    }
+
+    if( listen(listenfd, 5) == -1){
+        printf("listen socket error: %s(errno: %d)\n",strerror(errno),errno);
+        return;
+    }
+
+    printf("======waiting for client's request======\n");
+while((connfd = accept(listenfd, (struct sockaddr*)NULL, NULL)) == -1){
+            //printf("accept socket error: %s(errno: %d)",strerror(errno),errno);
+        }
+        threads.push_back(thread(run_net_receiver));
+        threads.push_back(thread(run_net_sender));
+    }
     for(int i = 0; i < threads.size(); i++){
         threads[i].join();
         cout<<"one exit:"<<i<<endl;
     }
+if(mode[0]=='s'){
+close(connfd);
+    close(listenfd);
 
+}
     //for_each(tasks.begin(),tasks.end(),dpuDestroyTask);
 
     //dpuDestroyKernel(kernelConv);
