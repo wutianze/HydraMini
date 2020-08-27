@@ -29,6 +29,7 @@
 ```shell
 cd ~/Car
 make run
+./init.sh # instead run: insmod /home/xilinx/dpu.ko
 ./build/run n 0.5 # Usage of this exe: ./car c/n 0.5(run speed)
 ```
 The first parameter means the run mode, `n` for only using neural network, `c` for using both neural network and computer vision functions. The second parameter is used unless the model outputs throttle value directly.
